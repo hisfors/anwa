@@ -21,29 +21,10 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-sage/15 bg-field">
-      {/* instrument strip: running head in small caps, coordinates kept in mono */}
-      <div className="mx-auto hidden max-w-almanac items-center justify-between px-8 py-2 font-body text-[0.8rem] text-sage smallcaps md:flex">
-        <span>
-          Al Qua&apos;a ·{" "}
-          <span className="figure text-[0.78rem] [font-variant-caps:normal]">
-            23.52&deg;N 55.49&deg;E
-          </span>{" "}
-          · <span className="figure text-[0.78rem] [font-variant-caps:normal]">UTC+4</span>
-        </span>
-        <span>Dark-sky almanac &amp; booking platform</span>
-        <span>Tatweer · Challenge 05</span>
-      </div>
-      <div className="rule mx-auto hidden max-w-almanac px-8 md:block" />
-
-      <div className="mx-auto flex max-w-almanac items-center justify-between px-5 py-3 sm:px-8">
-        <Link href="/" className="group flex items-baseline gap-3">
-          <span className="font-display text-2xl font-semibold tracking-tight text-bone">
-            Anwa
-          </span>
-          <span className="arabic text-lg text-brass/80">أنواء</span>
-          <span className="hidden font-body text-[0.8rem] text-sage smallcaps sm:inline">
-            / the star calendar
-          </span>
+      <div className="mx-auto flex max-w-almanac items-center justify-between px-5 py-4 sm:px-8">
+        <Link href="/" className="flex items-baseline gap-2.5">
+          <span className="font-display text-[1.95rem] leading-none text-bone">Anwa</span>
+          <span className="arabic text-2xl text-brass/85">أنواء</span>
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">

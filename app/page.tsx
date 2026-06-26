@@ -52,12 +52,8 @@ export default function HomePage() {
   return (
     <div className="pb-8">
       {/* Masthead plate, anchored by the real landscape photograph */}
-      <section className="mt-6">
-        <div className="flex items-center justify-between font-body text-[0.8rem] text-sage smallcaps">
-          <span>Al Qua&apos;a night almanac</span>
-          <span>Edition 2026 · Tropic of Cancer</span>
-        </div>
-        <div className="panel mt-2 overflow-hidden">
+      <section className="mt-8">
+        <div className="panel overflow-hidden">
           <div className="relative aspect-[16/9] w-full sm:aspect-[2/1]">
             <Image
               src="/img/alquaa-sky-landscape.jpg"

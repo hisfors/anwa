@@ -3,6 +3,7 @@ import { Newsreader, Spectral, IBM_Plex_Mono, Amiri } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import Starfield from "@/components/Starfield";
 
 // Display face: Newsreader, a classic editorial serif with optical sizing.
 // Reads like old print rather than a trendy display cut.
@@ -59,6 +60,7 @@ export default function RootLayout({
       className={`${display.variable} ${spectral.variable} ${plexMono.variable} ${amiri.variable}`}
     >
       <body className="grain min-h-screen antialiased">
+        <Starfield />
         <SiteHeader />
         <main className="mx-auto w-full max-w-almanac px-5 sm:px-8">{children}</main>
         <SiteFooter />

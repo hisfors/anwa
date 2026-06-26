@@ -14,15 +14,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        field: "#0B0F0D", // near-black, green undertone
-        raised: "#121A16", // raised surface
+        field: "#0E1411", // soft near-black, green undertone (lifted off pure black)
+        raised: "#17211C", // raised surface
         observatory: {
-          DEFAULT: "#16241C",
-          deep: "#1E3328",
+          DEFAULT: "#1A2A21",
+          deep: "#22392D",
         },
         sage: {
-          DEFAULT: "#6E8B7A", // secondary text, hairlines
-          light: "#8AA995",
+          DEFAULT: "#88A493", // secondary text, lifted for readability
+          light: "#A2BCAD",
+          dim: "#6E8B7A", // original, kept for hairlines only
         },
         accent: {
           deep: "#3E6B52", // primary actions
