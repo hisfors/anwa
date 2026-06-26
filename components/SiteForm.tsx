@@ -113,13 +113,16 @@ export default function SiteForm() {
           background: #0b0f0d;
           border: 1px solid rgba(110, 139, 122, 0.25);
           color: #e8e6dc;
-          padding: 0.5rem 0.75rem;
-          font-family: var(--font-mono), monospace;
-          font-size: 0.85rem;
+          padding: 0.6rem 0.75rem;
+          font-family: var(--font-spectral), Georgia, serif;
+          font-size: 1rem;
           outline: none;
         }
         :global(.sinput:focus) {
           border-color: #7fa98f;
+        }
+        :global(.sinput::placeholder) {
+          color: #6e8b7a;
         }
       `}</style>
     </form>

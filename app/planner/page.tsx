@@ -24,7 +24,7 @@ export default function PlannerPage() {
         lead="The ranking is real astronomy, not a model. Moon phase, astronomical twilight, the altitude of the Milky Way core, the planets up, and the fixed meteor calendar. Every raw value is shown so you can check it against Stellarium or timeanddate. That is the point: a moon phase is falsifiable."
       />
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
         <ScoreNote
           weight="up to 50"
           title="Moon darkness"
@@ -55,12 +55,12 @@ export default function PlannerPage() {
 
 function ScoreNote({ weight, title, body }: { weight: string; title: string; body: string }) {
   return (
-    <div className="panel p-4">
-      <div className="flex items-baseline justify-between">
-        <span className="font-display text-lg text-bone">{title}</span>
-        <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-brass/80">{weight}</span>
+    <div className="border-t border-sage/25 pt-4">
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="font-display text-xl text-bone">{title}</span>
+        <span className="kicker text-brass/80">{weight}</span>
       </div>
-      <p className="mt-2 font-body text-sm leading-relaxed text-bone-muted">{body}</p>
+      <p className="mt-3 font-body text-[1.02rem] leading-relaxed text-bone-muted">{body}</p>
     </div>
   );
 }

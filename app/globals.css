@@ -14,12 +14,25 @@
 
   body {
     @apply bg-field text-bone font-body;
+    font-size: 1.125rem; /* 18px reading base */
+    line-height: 1.65;
     background-image:
       /* faint ledger grid, like a star chart or an accounts book */
       linear-gradient(to right, rgba(110, 139, 122, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(110, 139, 122, 0.05) 1px, transparent 1px);
     background-size: 64px 64px;
     background-attachment: fixed;
+  }
+
+  /* hide native number spinners; numeric fields read as instrument inputs */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
   }
 
   h1, h2, h3, h4 {
@@ -60,18 +73,25 @@
     @apply border border-sage/15 bg-observatory;
   }
 
-  /* small mono kicker above a heading */
+  /* section eyebrow / label: Spectral small caps, letterspaced, like a printed atlas */
   .kicker {
-    @apply font-mono text-[0.68rem] uppercase tracking-[0.22em] text-sage;
+    @apply font-body text-[0.875rem] text-sage;
+    font-variant: all-small-caps;
+    letter-spacing: 0.12em;
+    line-height: 1.3;
   }
 
-  /* primary action, deep green, square, restrained */
+  /* primary action, deep green, square, restrained, set in small caps not mono */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 border border-accent-bright/40 bg-accent-deep/80 px-5 py-2.5 font-mono text-[0.78rem] uppercase tracking-[0.16em] text-bone transition-colors duration-300 hover:bg-accent-deep hover:border-accent-bright/70 disabled:opacity-40 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 border border-accent-bright/40 bg-accent-deep/80 px-6 py-3 font-body text-[0.95rem] text-bone transition-colors duration-300 hover:bg-accent-deep hover:border-accent-bright/70 disabled:opacity-40 disabled:cursor-not-allowed;
+    font-variant: all-small-caps;
+    letter-spacing: 0.09em;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 border border-sage/25 bg-transparent px-5 py-2.5 font-mono text-[0.78rem] uppercase tracking-[0.16em] text-bone-muted transition-colors duration-300 hover:border-sage/50 hover:text-bone;
+    @apply inline-flex items-center justify-center gap-2 border border-sage/25 bg-transparent px-6 py-3 font-body text-[0.95rem] text-bone-muted transition-colors duration-300 hover:border-sage/50 hover:text-bone;
+    font-variant: all-small-caps;
+    letter-spacing: 0.09em;
   }
 
   /* the brass tag for "up tonight" / key markers */
@@ -110,6 +130,12 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Spectral small caps, letterspaced: for nav, running heads, field labels */
+  .smallcaps {
+    font-variant: all-small-caps;
+    letter-spacing: 0.12em;
   }
 }
 

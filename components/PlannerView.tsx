@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import StarChart from "@/components/StarChart";
 import { Figure } from "@/components/ui";
+import { DateField, Select } from "@/components/controls";
 import { fmtLocalTime, fmtLocalLongDate, type NightScore } from "@/lib/astronomy";
 
 interface Props {
@@ -22,10 +23,10 @@ function scoreTone(score: number) {
 
 function ScoreBar({ score }: { score: number }) {
   return (
-    <div className="flex items-center gap-2">
-      <div className="h-1.5 w-20 bg-sage/15">
+    <div className="flex items-center gap-3">
+      <div className="relative h-px w-24 bg-sage/20">
         <div
-          className={`h-full ${score >= 75 ? "bg-brass" : score >= 55 ? "bg-accent-bright" : "bg-sage"}`}
+          className={`absolute inset-y-0 left-0 ${score >= 75 ? "bg-brass" : score >= 55 ? "bg-accent-bright" : "bg-sage-light"}`}
           style={{ width: `${score}%` }}
         />
       </div>
@@ -116,35 +117,33 @@ export default function PlannerView({
             </span>
           </div>
         </div>
-        <div>
-          <label className="kicker block" htmlFor="start">Start date</label>
-          <input
-            id="start"
-            type="date"
+        <div className="w-44">
+          <label className="kicker mb-1.5 block">Start date</label>
+          <DateField
             value={start}
-            onChange={(e) => {
-              setStart(e.target.value);
-              recompute(e.target.value, days);
+            ariaLabel="Start date"
+            onChange={(v) => {
+              setStart(v);
+              recompute(v, days);
             }}
-            className="mt-1 border border-sage/25 bg-field px-3 py-1.5 font-mono text-sm text-bone outline-none focus:border-accent-bright"
           />
         </div>
-        <div>
-          <label className="kicker block" htmlFor="days">Nights</label>
-          <select
-            id="days"
-            value={days}
-            onChange={(e) => {
-              const d = parseInt(e.target.value, 10);
+        <div className="w-36">
+          <label className="kicker mb-1.5 block">Nights</label>
+          <Select
+            value={String(days)}
+            ariaLabel="Number of nights"
+            options={[
+              { value: "14", label: "14 nights" },
+              { value: "30", label: "30 nights" },
+              { value: "45", label: "45 nights" },
+            ]}
+            onChange={(v) => {
+              const d = parseInt(v, 10);
               setDays(d);
               recompute(start, d);
             }}
-            className="mt-1 border border-sage/25 bg-field px-3 py-1.5 font-mono text-sm text-bone outline-none focus:border-accent-bright"
-          >
-            <option value={14}>14</option>
-            <option value={30}>30</option>
-            <option value={45}>45</option>
-          </select>
+          />
         </div>
         <div className="ml-auto self-center">
           <span className="tag-brass">

@@ -53,7 +53,7 @@ export default function HomePage() {
     <div className="pb-8">
       {/* Masthead plate, anchored by the real landscape photograph */}
       <section className="mt-6">
-        <div className="flex items-center justify-between font-mono text-[0.62rem] uppercase tracking-[0.2em] text-sage">
+        <div className="flex items-center justify-between font-body text-[0.8rem] text-sage smallcaps">
           <span>Al Qua&apos;a night almanac</span>
           <span>Edition 2026 · Tropic of Cancer</span>
         </div>
@@ -112,13 +112,13 @@ export default function HomePage() {
       </section>
 
       {/* The computed centrepiece: a real star chart, not a decorative blob */}
-      <section className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr]">
+      <section className="mt-24 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr]">
         <div>
           <span className="kicker">The interactive almanac</span>
-          <h2 className="mt-2 font-display text-3xl leading-tight text-bone sm:text-4xl">
+          <h2 className="mt-3 font-display text-[2rem] font-medium leading-[1.1] text-bone sm:text-[2.4rem]">
             The sky as it will really stand on the next optimal night
           </h2>
-          <p className="mt-4 max-w-xl font-body text-base leading-relaxed text-bone-muted">
+          <p className="mt-4 max-w-xl font-body text-lg leading-relaxed text-bone-muted">
             This is a computed chart, not an illustration. Every dot is a real
             star at its real place for Al Qua&apos;a at the moment the Milky Way
             core crosses due south. The brass stars carry their Arab names. The
@@ -153,10 +153,10 @@ export default function HomePage() {
       </section>
 
       {/* Module index, a ledger, not bento cards */}
-      <section className="mt-16">
+      <section className="mt-24">
         <div className="flex items-baseline justify-between border-t border-sage/20 pt-5">
           <span className="kicker">Four connected modules</span>
-          <span className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-sage">
+          <span className="font-body text-[0.8rem] text-sage smallcaps">
             Prove · Plan · Guide · Earn
           </span>
         </div>
@@ -169,11 +169,11 @@ export default function HomePage() {
             >
               <div className="flex items-baseline gap-3">
                 <span className="font-mono text-sm text-brass/70">{m.index}</span>
-                <span className="font-display text-2xl text-bone group-hover:text-brass">
+                <span className="font-display text-[1.65rem] text-bone group-hover:text-brass">
                   {m.title}
                 </span>
               </div>
-              <p className="font-body text-sm leading-relaxed text-bone-muted">
+              <p className="font-body text-[1.05rem] leading-relaxed text-bone-muted">
                 {m.desc}
               </p>
               <div className="text-right">
@@ -185,12 +185,12 @@ export default function HomePage() {
       </section>
 
       {/* Testable claims, the falsifiability spine, on the front page */}
-      <section className="mt-16">
+      <section className="mt-24">
         <span className="kicker">Claims you can check</span>
-        <h2 className="mt-2 font-display text-3xl text-bone">Everything here is testable</h2>
-        <div className="mt-5 grid grid-cols-1 gap-px overflow-hidden border border-sage/15 bg-sage/15 sm:grid-cols-3">
-          <div className="bg-raised p-5">
-            <p className="font-body text-sm leading-relaxed text-bone">
+        <h2 className="mt-3 font-display text-[2rem] font-medium text-bone">Everything here is testable</h2>
+        <div className="mt-6 grid grid-cols-1 gap-px overflow-hidden border border-sage/15 bg-sage/15 sm:grid-cols-3">
+          <div className="bg-raised p-6">
+            <p className="font-body text-[1.05rem] leading-relaxed text-bone">
               Al Qua&apos;a sky brightness is{" "}
               <Figure value={alquaa.sqm.toFixed(1)} unit="mag/arcsec2" tone="brass" /> (Bortle {alquaa.bortle}),
               versus Dubai at <Figure value={dubai.sqm.toFixed(1)} unit="mag/arcsec2" />, about{" "}
@@ -200,8 +200,8 @@ export default function HomePage() {
               Source: Falchi et al. 2016
             </a>
           </div>
-          <div className="bg-raised p-5">
-            <p className="font-body text-sm leading-relaxed text-bone">
+          <div className="bg-raised p-6">
+            <p className="font-body text-[1.05rem] leading-relaxed text-bone">
               The next optimal window is around the{" "}
               {fmtLocalDate(new Date(sampleWindow.newMoon))}{" "}
               new moon, with the best night under{" "}
@@ -211,8 +211,8 @@ export default function HomePage() {
               Verify against Stellarium
             </Link>
           </div>
-          <div className="bg-raised p-5">
-            <p className="font-body text-sm leading-relaxed text-bone">
+          <div className="bg-raised p-6">
+            <p className="font-body text-[1.05rem] leading-relaxed text-bone">
               An Arabic-only host can run a full guided session, because the tour is
               generated and narrated by the platform. A committed sample proves it
               with no API key.

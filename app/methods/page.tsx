@@ -74,7 +74,7 @@ export default function MethodsPage() {
               </h3>
               <ul className="mt-3 space-y-2">
                 {p.items.map((it, i) => (
-                  <li key={i} className="font-body text-sm leading-relaxed text-bone-muted">
+                  <li key={i} className="font-body text-base leading-relaxed text-bone-muted">
                     <span className="text-brass/60">·</span> {it}
                   </li>
                 ))}
@@ -85,7 +85,7 @@ export default function MethodsPage() {
       </div>
 
       {/* formulas */}
-      <div className="mt-12 border-t border-sage/20 pt-5">
+      <div className="mt-16 border-t border-sage/20 pt-5">
         <span className="kicker">Formulas and assumptions</span>
         <div className="mt-4 grid grid-cols-1 gap-x-10 gap-y-5 md:grid-cols-2">
           <Method title="Astronomical darkness">
@@ -122,7 +122,7 @@ export default function MethodsPage() {
       </div>
 
       {/* reproduce */}
-      <div className="mt-12 border-t border-sage/20 pt-5">
+      <div className="mt-16 border-t border-sage/20 pt-5">
         <span className="kicker">Reproduce the claims</span>
         <h3 className="mt-2 font-display text-2xl text-bone">Check the committed sample yourself</h3>
         <div className="panel-deep mt-4 p-5">
@@ -137,7 +137,7 @@ export default function MethodsPage() {
             <RV label="Moon illum." value={`${(best.moonIllumination * 100).toFixed(1)}%`} />
             <RV label="Core transit" value={`${fmtLocalTime(best.gcTransit ? new Date(best.gcTransit) : null)} local`} />
           </dl>
-          <p className="mt-4 font-body text-sm leading-relaxed text-bone-muted">
+          <p className="mt-4 font-body text-base leading-relaxed text-bone-muted">
             To verify independently: open Stellarium or timeanddate.com, set the location to Al
             Qua&apos;a (23.52N, 55.49E) and the date to the best night above, and confirm the
             moon phase, the twilight times, and the altitude of the galactic centre. They will match.
@@ -146,7 +146,7 @@ export default function MethodsPage() {
       </div>
 
       {/* meteor calendar */}
-      <div className="mt-12 border-t border-sage/20 pt-5">
+      <div className="mt-16 border-t border-sage/20 pt-5">
         <span className="kicker">Embedded meteor calendar · IMO</span>
         <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1.5 sm:grid-cols-3 md:grid-cols-3">
           {METEOR_SHOWERS.map((m) => (
@@ -161,7 +161,7 @@ export default function MethodsPage() {
       </div>
 
       {/* sources + libraries */}
-      <div className="mt-12 grid grid-cols-1 gap-10 border-t border-sage/20 pt-5 md:grid-cols-2">
+      <div className="mt-16 grid grid-cols-1 gap-10 border-t border-sage/20 pt-5 md:grid-cols-2">
         <div>
           <span className="kicker">Primary sources</span>
           <ul className="mt-3 space-y-3">
@@ -193,7 +193,7 @@ function Method({ title, children }: { title: string; children: React.ReactNode 
   return (
     <div className="border-l border-sage/15 pl-4">
       <h4 className="font-display text-lg text-bone">{title}</h4>
-      <p className="mt-1.5 font-body text-sm leading-relaxed text-bone-muted">{children}</p>
+      <p className="mt-1.5 font-body text-base leading-relaxed text-bone-muted">{children}</p>
     </div>
   );
 }

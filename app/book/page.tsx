@@ -53,7 +53,7 @@ export default async function BookPage() {
                   <Figure value={s.pricePerPerson} unit="AED pp" tone="brass" />
                 </div>
               </div>
-              <p className="mt-3 font-body text-sm leading-relaxed text-bone-muted">{s.description}</p>
+              <p className="mt-3 font-body text-base leading-relaxed text-bone-muted">{s.description}</p>
               <div className="mt-4 grid grid-cols-3 gap-2 border-t border-sage/12 pt-3 font-mono text-[0.66rem] text-sage">
                 <span>Bortle {s.bortleClass}</span>
                 <span>{s.skyBrightness.toFixed(1)} mag</span>

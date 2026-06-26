@@ -53,7 +53,7 @@ function Pillar({ title, body }: { title: string; body: string }) {
   return (
     <div className="panel p-4">
       <span className="font-display text-lg text-bone">{title}</span>
-      <p className="mt-2 font-body text-sm leading-relaxed text-bone-muted">{body}</p>
+      <p className="mt-2 font-body text-base leading-relaxed text-bone-muted">{body}</p>
     </div>
   );
 }

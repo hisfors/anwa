@@ -21,9 +21,15 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-sage/15 bg-field">
-      {/* instrument strip */}
-      <div className="mx-auto hidden max-w-almanac items-center justify-between px-8 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-sage md:flex">
-        <span>Al Qua&apos;a · 23.52&deg;N 55.49&deg;E · UTC+4</span>
+      {/* instrument strip: running head in small caps, coordinates kept in mono */}
+      <div className="mx-auto hidden max-w-almanac items-center justify-between px-8 py-2 font-body text-[0.8rem] text-sage smallcaps md:flex">
+        <span>
+          Al Qua&apos;a ·{" "}
+          <span className="figure text-[0.78rem] [font-variant-caps:normal]">
+            23.52&deg;N 55.49&deg;E
+          </span>{" "}
+          · <span className="figure text-[0.78rem] [font-variant-caps:normal]">UTC+4</span>
+        </span>
         <span>Dark-sky almanac &amp; booking platform</span>
         <span>Tatweer · Challenge 05</span>
       </div>
@@ -35,24 +41,24 @@ export default function SiteHeader() {
             Anwa
           </span>
           <span className="arabic text-lg text-brass/80">أنواء</span>
-          <span className="hidden font-mono text-[0.6rem] uppercase tracking-[0.2em] text-sage sm:inline">
+          <span className="hidden font-body text-[0.8rem] text-sage smallcaps sm:inline">
             / the star calendar
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`group flex items-center gap-1.5 font-mono text-[0.74rem] uppercase tracking-[0.14em] transition-colors duration-300 ${
+              className={`group flex items-baseline gap-1.5 font-body text-[0.98rem] smallcaps transition-colors duration-300 ${
                 isActive(item.href)
                   ? "text-brass"
                   : "text-bone-muted hover:text-bone"
               }`}
             >
               <span
-                className={`text-[0.6rem] ${
+                className={`figure text-[0.62rem] [font-variant-caps:normal] ${
                   isActive(item.href) ? "text-brass/70" : "text-sage/60"
                 }`}
               >
@@ -68,7 +74,7 @@ export default function SiteHeader() {
           aria-label="Menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="border border-sage/25 px-3 py-2 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-bone-muted lg:hidden"
+          className="border border-sage/25 px-4 py-2 font-body text-[0.9rem] text-bone-muted smallcaps lg:hidden"
         >
           {open ? "Close" : "Menu"}
         </button>
@@ -81,11 +87,11 @@ export default function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className={`flex items-center gap-3 border-b border-sage/10 px-6 py-4 font-mono text-[0.8rem] uppercase tracking-[0.14em] ${
+              className={`flex items-baseline gap-3 border-b border-sage/10 px-6 py-4 font-body text-[1rem] smallcaps ${
                 isActive(item.href) ? "text-brass" : "text-bone-muted"
               }`}
             >
-              <span className="text-[0.62rem] text-sage/60">{item.index}</span>
+              <span className="figure text-[0.66rem] text-sage/60 [font-variant-caps:normal]">{item.index}</span>
               {item.label}
             </Link>
           ))}

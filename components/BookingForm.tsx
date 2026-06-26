@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { GUIDE_LANGUAGES } from "@/lib/guide-types";
+import { Select } from "@/components/controls";
 
 interface AvailOption {
   id: string;
@@ -111,17 +112,16 @@ export default function BookingForm({
           />
         </Field>
         <Field label="Night">
-          <select
+          <Select
             value={form.date}
-            onChange={(e) => setForm({ ...form, date: e.target.value })}
-            className="input"
-          >
-            {availabilities.map((a) => (
-              <option key={a.id} value={a.dateISO}>
-                {a.label} · score {a.score}
-              </option>
-            ))}
-          </select>
+            ariaLabel="Night"
+            onChange={(v) => setForm({ ...form, date: v })}
+            options={availabilities.map((a) => ({
+              value: a.dateISO,
+              label: a.label,
+              hint: `score ${a.score}`,
+            }))}
+          />
         </Field>
         <Field label={`Party size (max ${capacity})`}>
           <input
@@ -135,17 +135,12 @@ export default function BookingForm({
           />
         </Field>
         <Field label="Tour language">
-          <select
+          <Select
             value={form.language}
-            onChange={(e) => setForm({ ...form, language: e.target.value })}
-            className="input"
-          >
-            {GUIDE_LANGUAGES.map((l) => (
-              <option key={l.code} value={l.code}>
-                {l.label}
-              </option>
-            ))}
-          </select>
+            ariaLabel="Tour language"
+            onChange={(v) => setForm({ ...form, language: v })}
+            options={GUIDE_LANGUAGES.map((l) => ({ value: l.code, label: l.label }))}
+          />
         </Field>
         <div className="sm:col-span-2">
           <Field label="Message to the host">
@@ -177,13 +172,16 @@ export default function BookingForm({
           background: #0b0f0d;
           border: 1px solid rgba(110, 139, 122, 0.25);
           color: #e8e6dc;
-          padding: 0.5rem 0.75rem;
-          font-family: var(--font-mono), monospace;
-          font-size: 0.85rem;
+          padding: 0.6rem 0.75rem;
+          font-family: var(--font-spectral), Georgia, serif;
+          font-size: 1rem;
           outline: none;
         }
         :global(.input:focus) {
           border-color: #7fa98f;
+        }
+        :global(.input::placeholder) {
+          color: #6e8b7a;
         }
       `}</style>
     </form>

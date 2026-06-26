@@ -99,7 +99,7 @@ export default function ProofPage() {
       </div>
 
       {/* map */}
-      <div className="mt-14">
+      <div className="mt-20">
         <div className="flex items-baseline justify-between border-t border-sage/20 pt-5">
           <span className="kicker">Drop a pin · sample the darkness</span>
           <span className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-sage">
@@ -115,12 +115,12 @@ export default function ProofPage() {
       </div>
 
       {/* first-party photographic evidence */}
-      <div className="mt-14 border-t border-sage/20 pt-5">
+      <div className="mt-20 border-t border-sage/20 pt-5">
         <span className="kicker">First-party evidence · team originals</span>
         <h3 className="mt-2 font-display text-2xl text-bone">
           The proof you can see, shot on site
         </h3>
-        <p className="mt-3 max-w-3xl font-body text-base leading-relaxed text-bone-muted">
+        <p className="mt-3 max-w-3xl font-body text-lg leading-relaxed text-bone-muted">
           These are real long-exposure captures from Al Qua&apos;a, not stock imagery. The
           bright cloudy band is the Milky Way core, plainly visible to the naked eye here.
           The faint green wash is natural airglow, the oxygen emission only a genuinely dark
@@ -149,7 +149,7 @@ export default function ProofPage() {
       </div>
 
       {/* sources */}
-      <div className="mt-14 border-t border-sage/20 pt-5">
+      <div className="mt-20 border-t border-sage/20 pt-5">
         <span className="kicker">Sources for this page</span>
         <ul className="mt-3 space-y-3">
           {SOURCES.map((s) => (

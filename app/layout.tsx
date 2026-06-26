@@ -1,14 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Spectral, IBM_Plex_Mono, Amiri } from "next/font/google";
+import { Newsreader, Spectral, IBM_Plex_Mono, Amiri } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 
-const fraunces = Fraunces({
+// Display face: Newsreader, a classic editorial serif with optical sizing.
+// Reads like old print rather than a trendy display cut.
+const display = Newsreader({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-display",
   display: "swap",
-  axes: ["opsz", "SOFT"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
 const spectral = Spectral({
@@ -53,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${spectral.variable} ${plexMono.variable} ${amiri.variable}`}
+      className={`${display.variable} ${spectral.variable} ${plexMono.variable} ${amiri.variable}`}
     >
       <body className="grain min-h-screen antialiased">
         <SiteHeader />

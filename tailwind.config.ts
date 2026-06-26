@@ -38,7 +38,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "Georgia", "serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
         body: ["var(--font-spectral)", "Georgia", "serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
         arabic: ["var(--font-arabic)", "Geeza Pro", "serif"],

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-/** A printed-almanac section header: mono index + kicker, Fraunces title, hairline. */
+/** A printed-almanac section header: mono index + small-caps kicker, serif title, hairline. */
 export function SectionHeader({
   index,
   kicker,
@@ -13,20 +13,20 @@ export function SectionHeader({
   lead?: ReactNode;
 }) {
   return (
-    <div className="border-t border-sage/20 pt-5">
+    <div className="border-t border-sage/20 pt-7">
       <div className="flex items-center gap-3">
         {index && (
-          <span className="font-mono text-[0.7rem] tracking-[0.2em] text-brass/70">
+          <span className="font-mono text-[0.75rem] tracking-[0.2em] text-brass/70">
             {index}
           </span>
         )}
         {kicker && <span className="kicker">{kicker}</span>}
       </div>
-      <h2 className="mt-2 font-display text-3xl leading-tight text-bone sm:text-4xl">
+      <h2 className="mt-3 font-display text-[2.1rem] font-medium leading-[1.1] text-bone sm:text-[2.6rem]">
         {title}
       </h2>
       {lead && (
-        <p className="mt-3 max-w-2xl font-body text-base leading-relaxed text-bone-muted">
+        <p className="mt-4 max-w-3xl font-body text-[1.3rem] leading-relaxed text-bone-muted">
           {lead}
         </p>
       )}

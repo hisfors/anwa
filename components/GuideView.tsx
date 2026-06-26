@@ -78,7 +78,7 @@ export default function GuideView({
                 type="button"
                 onClick={() => generate(l)}
                 disabled={loading}
-                className={`border px-3 py-1.5 font-mono text-[0.74rem] tracking-[0.06em] transition-colors disabled:opacity-50 ${
+                className={`border px-3.5 py-1.5 font-body text-[0.95rem] transition-colors disabled:opacity-50 ${
                   active
                     ? "border-brass/60 bg-observatory text-brass"
                     : "border-sage/25 text-bone-muted hover:border-sage/50 hover:text-bone"
