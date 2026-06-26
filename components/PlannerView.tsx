@@ -203,7 +203,7 @@ export default function PlannerView({
                 The whole sky above Al Qua&apos;a on this night, as if you looked straight
                 up. Drag the slider to move from dusk to dawn and watch it turn.
               </p>
-              <div className="mt-3 border border-sage/15 bg-[#080C12] p-4 sm:p-5">
+              <div className="mt-3 surface p-4 sm:p-5">
                 <StarChart
                   latitude={latitude}
                   longitude={longitude}

@@ -73,7 +73,7 @@ export function Select({
         aria-expanded={open}
         aria-label={ariaLabel}
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-3 border border-sage/25 bg-field px-3 py-2.5 text-left font-body text-[0.95rem] text-bone transition-colors hover:border-sage/50 focus:border-accent-bright focus:outline-none"
+        className="flex w-full items-center justify-between gap-3 rounded-md border border-sage/25 bg-field px-3 py-2.5 text-left font-body text-[0.95rem] text-bone transition-colors hover:border-sage/50 focus:border-accent-bright focus:outline-none"
       >
         <span className="truncate">{current?.label ?? "Select"}</span>
         <Chevron open={open} />
@@ -81,7 +81,7 @@ export function Select({
       {open && (
         <ul
           role="listbox"
-          className="absolute left-0 z-30 mt-1 max-h-72 w-full min-w-max overflow-auto border border-sage/30 bg-raised"
+          className="absolute left-0 z-30 mt-1 max-h-72 w-full min-w-max overflow-auto rounded-md border border-sage/30 bg-raised"
         >
           {options.map((o) => {
             const active = o.value === value;
@@ -174,7 +174,7 @@ export function DateField({
         aria-expanded={open}
         aria-label={ariaLabel}
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-3 border border-sage/25 bg-field px-3 py-2.5 text-left transition-colors hover:border-sage/50 focus:border-accent-bright focus:outline-none"
+        className="flex w-full items-center justify-between gap-3 rounded-md border border-sage/25 bg-field px-3 py-2.5 text-left transition-colors hover:border-sage/50 focus:border-accent-bright focus:outline-none"
       >
         <span className="figure text-[0.95rem] text-bone">{label}</span>
         <Chevron open={open} />
@@ -182,7 +182,7 @@ export function DateField({
       {open && (
         <div
           role="dialog"
-          className="absolute left-0 z-30 mt-1 w-[17rem] border border-sage/30 bg-raised p-3"
+          className="absolute left-0 z-30 mt-1 w-[17rem] rounded-md border border-sage/30 bg-raised p-3"
         >
           <div className="flex items-center justify-between">
             <button
@@ -223,7 +223,7 @@ export function DateField({
                     onChange(iso);
                     setOpen(false);
                   }}
-                  className={`aspect-square text-center font-mono text-[0.82rem] tabular-nums transition-colors ${
+                  className={`aspect-square rounded text-center font-mono text-[0.82rem] tabular-nums transition-colors ${
                     isSel
                       ? "bg-accent-deep text-bone"
                       : "text-bone-muted hover:bg-observatory hover:text-bone"

@@ -75,7 +75,7 @@ export default function KeepsakeCard({
       {/* the poster */}
       <div
         ref={cardRef}
-        className="mx-auto w-full max-w-[460px] border border-brass/25 bg-[#0B100D] p-7"
+        className="mx-auto w-full max-w-[460px] rounded-lg border border-brass/25 bg-[#0B100D] p-7"
       >
         <div className="flex items-baseline justify-between">
           <span className="font-display text-2xl text-bone">Anwa</span>
@@ -83,7 +83,7 @@ export default function KeepsakeCard({
         </div>
         <p className="mt-1 font-body text-sm text-sage smallcaps">A night under the sky at Al Qua&apos;a</p>
 
-        <div className="mt-5 border border-sage/15 bg-[#080C12] p-3">
+        <div className="mt-5 surface p-3">
           <StarChart latitude={latitude} longitude={longitude} dateISO={chartISO} showLabels={false} />
         </div>
 
@@ -121,7 +121,7 @@ export default function KeepsakeCard({
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="optional"
-          className="mt-1.5 w-full border border-sage/25 bg-field px-3 py-2.5 font-body text-base text-bone outline-none focus:border-accent-bright"
+          className="mt-1.5 w-full rounded-md border border-sage/25 bg-field px-3 py-2.5 font-body text-base text-bone outline-none focus:border-accent-bright"
         />
         <div className="mt-5 flex flex-wrap gap-3">
           <button type="button" onClick={download} disabled={saving || loading} className="btn">

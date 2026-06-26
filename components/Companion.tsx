@@ -29,7 +29,7 @@ const GREETING: Msg = {
     "Hello. I can help you plan a night under the dark sky at Al Qua'a, tell you what is up there and the old names for it, and point you to a host family. What would you like to know?",
 };
 
-export default function Companion({ live }: { live: boolean }) {
+export default function Companion({ live, compact = false }: { live: boolean; compact?: boolean }) {
   const [messages, setMessages] = useState<Msg[]>([GREETING]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -70,15 +70,15 @@ export default function Companion({ live }: { live: boolean }) {
   }
 
   return (
-    <div className="mt-8">
-      {!live && (
-        <p className="mb-4 border border-sage/20 bg-raised/60 px-4 py-3 font-body text-sm leading-relaxed text-sage-light">
+    <div className={compact ? "" : "mt-8"}>
+      {!live && !compact && (
+        <p className="mb-4 rounded-md border border-sage/20 bg-raised/60 px-4 py-3 font-body text-sm leading-relaxed text-sage-light">
           The companion answers fully once the guide is connected. Until then it still gives you
           a real, calculated answer to get started.
         </p>
       )}
 
-      <div className="panel flex h-[34rem] flex-col">
+      <div className={`panel flex flex-col ${compact ? "h-full rounded-none border-0" : "h-[34rem]"}`}>
         {/* conversation */}
         <div className="flex-1 space-y-5 overflow-y-auto p-5 sm:p-6">
           {messages.map((m, i) => (
@@ -90,7 +90,7 @@ export default function Companion({ live }: { live: boolean }) {
                 <div
                   className={
                     m.role === "user"
-                      ? "border border-sage/25 bg-observatory/70 px-4 py-2.5 font-body text-[1.02rem] leading-relaxed text-bone"
+                      ? "rounded-md border border-sage/25 bg-observatory/70 px-4 py-2.5 font-body text-[1.02rem] leading-relaxed text-bone"
                       : "font-body text-[1.08rem] leading-relaxed text-bone"
                   }
                 >
@@ -118,7 +118,7 @@ export default function Companion({ live }: { live: boolean }) {
                 key={ex}
                 type="button"
                 onClick={() => send(ex)}
-                className="border border-sage/25 px-3 py-1.5 text-left font-body text-sm text-bone-muted transition-colors hover:border-sage/50 hover:text-bone"
+                className="rounded border border-sage/25 px-3 py-1.5 text-left font-body text-sm text-bone-muted transition-colors hover:border-sage/50 hover:text-bone"
               >
                 {ex}
               </button>

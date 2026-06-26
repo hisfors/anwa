@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Starfield from "@/components/Starfield";
+import CompanionLauncher from "@/components/CompanionLauncher";
 
 // Display face: Newsreader, a classic editorial serif with optical sizing.
 // Reads like old print rather than a trendy display cut.
@@ -64,6 +65,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="mx-auto w-full max-w-almanac px-5 sm:px-8">{children}</main>
         <SiteFooter />
+        <CompanionLauncher live={Boolean(process.env.ANTHROPIC_API_KEY)} />
       </body>
     </html>
   );

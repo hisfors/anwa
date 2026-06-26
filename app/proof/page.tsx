@@ -1,5 +1,6 @@
 import ProofMap from "@/components/ProofMap";
 import PhotoPlate from "@/components/PhotoPlate";
+import ReadMySky from "@/components/ReadMySky";
 import { SectionHeader, Figure, Cite } from "@/components/ui";
 import {
   DARKNESS_POINTS,
@@ -151,6 +152,17 @@ export default function ProofPage() {
             sizes="(max-width: 768px) 100vw, 40vw"
           />
         </div>
+      </div>
+
+      {/* read your own sky */}
+      <div className="mt-20 border-t border-sage/20 pt-5">
+        <span className="kicker">Read your own sky</span>
+        <h3 className="mt-2 font-display text-[1.7rem] text-bone">How dark is the sky where you are?</h3>
+        <p className="mt-2 max-w-3xl font-body text-base leading-relaxed text-bone-muted">
+          Upload a photo of your night sky and Anwa reads it: how dark it is, whether the Milky
+          Way shows, and how much city light is reaching you. Then compare it with Al Qua&apos;a.
+        </p>
+        <ReadMySky />
       </div>
 
       {/* sources */}

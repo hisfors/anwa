@@ -182,6 +182,7 @@ export default function BookingForm({
           border: 1px solid rgba(110, 139, 122, 0.25);
           color: #e8e6dc;
           padding: 0.6rem 0.75rem;
+          border-radius: 6px;
           font-family: var(--font-spectral), Georgia, serif;
           font-size: 1rem;
           outline: none;

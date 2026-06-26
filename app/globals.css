@@ -66,13 +66,18 @@
     @apply font-mono tracking-mono tabular-nums;
   }
 
-  /* panel: a bordered ledger surface, square cornered, no soft drop shadow */
+  /* panel: a bordered ledger surface, softly rounded, no soft drop shadow */
   .panel {
-    @apply border border-sage/15 bg-raised;
+    @apply rounded-lg border border-sage/15 bg-raised;
   }
 
   .panel-deep {
-    @apply border border-sage/15 bg-observatory;
+    @apply rounded-lg border border-sage/15 bg-observatory;
+  }
+
+  /* a softly rounded dark surface for the star chart and similar boxes */
+  .surface {
+    @apply rounded-lg border border-sage/15 bg-[#080C12];
   }
 
   /* section eyebrow / label: Spectral small caps, letterspaced, like a printed atlas */
@@ -85,24 +90,24 @@
 
   /* primary action, deep green, square, restrained, set in small caps not mono */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 border border-accent-bright/40 bg-accent-deep/80 px-6 py-3 font-body text-[0.95rem] text-bone transition-colors duration-300 hover:bg-accent-deep hover:border-accent-bright/70 disabled:opacity-40 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-accent-bright/40 bg-accent-deep/80 px-6 py-3 font-body text-[0.95rem] text-bone transition-colors duration-300 hover:bg-accent-deep hover:border-accent-bright/70 disabled:opacity-40 disabled:cursor-not-allowed;
     font-variant: all-small-caps;
     letter-spacing: 0.09em;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 border border-sage/25 bg-transparent px-6 py-3 font-body text-[0.95rem] text-bone-muted transition-colors duration-300 hover:border-sage/50 hover:text-bone;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-sage/25 bg-transparent px-6 py-3 font-body text-[0.95rem] text-bone-muted transition-colors duration-300 hover:border-sage/50 hover:text-bone;
     font-variant: all-small-caps;
     letter-spacing: 0.09em;
   }
 
   /* the brass tag for "up tonight" / key markers */
   .tag-brass {
-    @apply inline-flex items-center gap-1.5 border border-brass/40 px-2 py-0.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-brass;
+    @apply inline-flex items-center gap-1.5 rounded border border-brass/40 px-2 py-0.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-brass;
   }
 
   .tag-sage {
-    @apply inline-flex items-center gap-1.5 border border-sage/30 px-2 py-0.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-sage-light;
+    @apply inline-flex items-center gap-1.5 rounded border border-sage/30 px-2 py-0.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-sage-light;
   }
 
   /* an inline cited figure: number in mono + a source superscript */

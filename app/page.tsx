@@ -133,7 +133,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="border border-sage/15 bg-[#080C12] p-4 sm:p-6">
+        <div className="surface p-4 sm:p-6">
           <StarChart
             latitude={sampleWindow.location.latitude}
             longitude={sampleWindow.location.longitude}
@@ -182,7 +182,7 @@ export default function HomePage() {
       <section className="mt-24">
         <span className="kicker">Why Al Qua&apos;a</span>
         <h2 className="mt-3 font-display text-[2.1rem] font-medium text-bone">A rare sky, an hour from the city</h2>
-        <div className="mt-6 grid grid-cols-1 gap-px overflow-hidden border border-sage/15 bg-sage/15 sm:grid-cols-3">
+        <div className="mt-6 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-sage/15 bg-sage/15 sm:grid-cols-3">
           <div className="bg-raised p-6">
             <h3 className="font-display text-xl text-brass">About {ratio.toFixed(0)} times darker than Dubai</h3>
             <p className="mt-2 font-body text-[1.05rem] leading-relaxed text-bone-muted">
