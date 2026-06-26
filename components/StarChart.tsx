@@ -211,7 +211,8 @@ export default function StarChart({
         {/* altitude rings at 30 and 60 degrees */}
         {[30, 60].map((alt) => {
           const z = (90 - alt) * (Math.PI / 180);
-          const rr = R * Math.tan(z / 2);
+          // round so server (Node) and client (browser) Math.tan agree at hydration
+          const rr = +(R * Math.tan(z / 2)).toFixed(2);
           return (
             <circle
               key={alt}
