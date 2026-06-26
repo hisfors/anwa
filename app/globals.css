@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-field text-bone font-body;
+    background-image:
+      /* faint ledger grid, like a star chart or an accounts book */
+      linear-gradient(to right, rgba(110, 139, 122, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(110, 139, 122, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-bone;
+    font-feature-settings: "ss01";
+  }
+
+  ::selection {
+    background: rgba(217, 168, 100, 0.28);
+    color: #f3efe2;
+  }
+
+  /* Arabic text gets the naskh face and proper RTL rendering. */
+  .arabic {
+    @apply font-arabic;
+    direction: rtl;
+    unicode-bidi: isolate;
+  }
+}
+
+@layer components {
+  /* hairline rule like a printed page */
+  .rule {
+    @apply border-0 border-t border-sage/20;
+  }
+
+  /* mono numeric figure with its unit, the instrument readout */
+  .figure {
+    @apply font-mono tracking-mono tabular-nums;
+  }
+
+  /* panel: a bordered ledger surface, square cornered, no soft drop shadow */
+  .panel {
+    @apply border border-sage/15 bg-raised;
+  }
+
+  .panel-deep {
+    @apply border border-sage/15 bg-observatory;
+  }
+
+  /* small mono kicker above a heading */
+  .kicker {
+    @apply font-mono text-[0.68rem] uppercase tracking-[0.22em] text-sage;
+  }
+
+  /* primary action, deep green, square, restrained */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 border border-accent-bright/40 bg-accent-deep/80 px-5 py-2.5 font-mono text-[0.78rem] uppercase tracking-[0.16em] text-bone transition-colors duration-300 hover:bg-accent-deep hover:border-accent-bright/70 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border border-sage/25 bg-transparent px-5 py-2.5 font-mono text-[0.78rem] uppercase tracking-[0.16em] text-bone-muted transition-colors duration-300 hover:border-sage/50 hover:text-bone;
+  }
+
+  /* the brass tag for "up tonight" / key markers */
+  .tag-brass {
+    @apply inline-flex items-center gap-1.5 border border-brass/40 px-2 py-0.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-brass;
+  }
+
+  .tag-sage {
+    @apply inline-flex items-center gap-1.5 border border-sage/30 px-2 py-0.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-sage-light;
+  }
+
+  /* an inline cited figure: number in mono + a source superscript */
+  .cite-link {
+    @apply text-sage-light underline decoration-sage/40 underline-offset-2 hover:text-brass hover:decoration-brass/60 transition-colors;
+  }
+}
+
+@layer utilities {
+  /* film grain / paper noise over the whole field, very low opacity */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.04;
+    background-image: url("/img/grain.svg");
+    background-size: 180px 180px;
+    mix-blend-mode: overlay;
+  }
+
+  /* treat a photograph: darken, very faint shift toward the green palette, never glossy */
+  .photo-treated {
+    filter: saturate(0.92) brightness(0.96) contrast(1.04);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* honour reduced motion everywhere */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* thin, palette-matched scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3e6b52 #0b0f0d;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #1e3328;
+  border: 2px solid #0b0f0d;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #3e6b52;
+}
+
+/* maplibre overrides to fit the palette, loaded globally */
+.maplibregl-ctrl-attrib {
+  background: rgba(11, 15, 13, 0.7) !important;
+  color: #6e8b7a !important;
+  font-family: var(--font-mono), monospace !important;
+  font-size: 10px !important;
+}
+.maplibregl-ctrl-attrib a {
+  color: #8aa995 !important;
+}
+.maplibregl-popup-content {
+  background: #121a16 !important;
+  color: #e8e6dc !important;
+  border: 1px solid rgba(110, 139, 122, 0.3) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-mono), monospace !important;
+  box-shadow: none !important;
+}
+.maplibregl-popup-tip {
+  display: none !important;
+}
+.maplibregl-ctrl-group {
+  background: #121a16 !important;
+  border: 1px solid rgba(110, 139, 122, 0.3) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.maplibregl-ctrl-group button {
+  background: transparent !important;
+}

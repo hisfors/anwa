@@ -1,0 +1,264 @@
+{
+  "generatedFrom": "2026-06-26T12:00:00.000Z",
+  "location": {
+    "id": "alquaa",
+    "name": "Al Qua'a",
+    "latitude": 23.52,
+    "longitude": 55.49
+  },
+  "newMoon": "2026-07-14T09:44:04.307Z",
+  "best": {
+    "date": "2026-07-12",
+    "label": "Sun 12 Jul",
+    "score": 78,
+    "components": {
+      "moon": 49,
+      "gc": 28,
+      "meteor": 0
+    },
+    "moonIllumination": 0.038060188774735826,
+    "moonPhaseName": "New Moon",
+    "astroDusk": "2026-07-12T16:33:57.109Z",
+    "astroDawn": "2026-07-13T00:13:41.705Z",
+    "astroNightHours": 7.66,
+    "darkHours": 7.58,
+    "moonDownWindow": {
+      "start": "2026-07-12T16:36:27.025Z",
+      "end": "2026-07-13T00:06:11.956Z"
+    },
+    "gcMaxAltitude": 37.5,
+    "gcTransit": "2026-07-12T18:41:22.839Z",
+    "planets": [
+      {
+        "name": "Saturn",
+        "altitude": 8.668787150217796,
+        "azimuth": 89.89842204421582,
+        "magnitude": 0.6089080100271751
+      }
+    ],
+    "meteor": null
+  },
+  "nights": [
+    {
+      "date": "2026-07-11",
+      "label": "Sat 11 Jul",
+      "score": 71,
+      "components": {
+        "moon": 42,
+        "gc": 28,
+        "meteor": 0
+      },
+      "moonIllumination": 0.09803991730054462,
+      "moonPhaseName": "Waning Crescent",
+      "astroDusk": "2026-07-11T16:34:15.267Z",
+      "astroDawn": "2026-07-12T00:13:07.940Z",
+      "astroNightHours": 7.65,
+      "darkHours": 6.48,
+      "moonDownWindow": {
+        "start": "2026-07-11T16:36:44.901Z",
+        "end": "2026-07-11T23:00:48.551Z"
+      },
+      "gcMaxAltitude": 37.5,
+      "gcTransit": "2026-07-11T18:46:25.873Z",
+      "planets": [
+        {
+          "name": "Saturn",
+          "altitude": 7.766257594322809,
+          "azimuth": 89.50733883001344,
+          "magnitude": 0.6135006979147324
+        }
+      ],
+      "meteor": null
+    },
+    {
+      "date": "2026-07-12",
+      "label": "Sun 12 Jul",
+      "score": 78,
+      "components": {
+        "moon": 49,
+        "gc": 28,
+        "meteor": 0
+      },
+      "moonIllumination": 0.038060188774735826,
+      "moonPhaseName": "New Moon",
+      "astroDusk": "2026-07-12T16:33:57.109Z",
+      "astroDawn": "2026-07-13T00:13:41.705Z",
+      "astroNightHours": 7.66,
+      "darkHours": 7.58,
+      "moonDownWindow": {
+        "start": "2026-07-12T16:36:27.025Z",
+        "end": "2026-07-13T00:06:11.956Z"
+      },
+      "gcMaxAltitude": 37.5,
+      "gcTransit": "2026-07-12T18:41:22.839Z",
+      "planets": [
+        {
+          "name": "Saturn",
+          "altitude": 8.668787150217796,
+          "azimuth": 89.89842204421582,
+          "magnitude": 0.6089080100271751
+        }
+      ],
+      "meteor": null
+    },
+    {
+      "date": "2026-07-13",
+      "label": "Mon 13 Jul",
+      "score": 78,
+      "components": {
+        "moon": 50,
+        "gc": 28,
+        "meteor": 0
+      },
+      "moonIllumination": 0.0057658114546012,
+      "moonPhaseName": "New Moon",
+      "astroDusk": "2026-07-13T16:33:37.452Z",
+      "astroDawn": "2026-07-14T00:14:16.033Z",
+      "astroNightHours": 7.68,
+      "darkHours": 7.68,
+      "moonDownWindow": {
+        "start": "2026-07-13T16:36:07.661Z",
+        "end": "2026-07-14T00:11:45.823Z"
+      },
+      "gcMaxAltitude": 37.5,
+      "gcTransit": "2026-07-13T18:36:17.726Z",
+      "planets": [
+        {
+          "name": "Saturn",
+          "altitude": 9.572427318706431,
+          "azimuth": 90.29085149967032,
+          "magnitude": 0.6042692331389876
+        }
+      ],
+      "meteor": null
+    },
+    {
+      "date": "2026-07-14",
+      "label": "Tue 14 Jul",
+      "score": 78,
+      "components": {
+        "moon": 50,
+        "gc": 28,
+        "meteor": 0
+      },
+      "moonIllumination": 0.003525911128585968,
+      "moonPhaseName": "New Moon",
+      "astroDusk": "2026-07-14T16:33:16.303Z",
+      "astroDawn": "2026-07-15T00:14:50.880Z",
+      "astroNightHours": 7.69,
+      "darkHours": 7.69,
+      "moonDownWindow": {
+        "start": "2026-07-14T16:35:46.817Z",
+        "end": "2026-07-15T00:12:20.365Z"
+      },
+      "gcMaxAltitude": 37.5,
+      "gcTransit": "2026-07-14T18:31:10.461Z",
+      "planets": [
+        {
+          "name": "Saturn",
+          "altitude": 10.476693066461607,
+          "azimuth": 90.68481350245153,
+          "magnitude": 0.5995853556978634
+        }
+      ],
+      "meteor": null
+    },
+    {
+      "date": "2026-07-15",
+      "label": "Wed 15 Jul",
+      "score": 78,
+      "components": {
+        "moon": 50,
+        "gc": 28,
+        "meteor": 0
+      },
+      "moonIllumination": 0.030573712800473496,
+      "moonPhaseName": "New Moon",
+      "astroDusk": "2026-07-15T16:32:53.670Z",
+      "astroDawn": "2026-07-16T00:15:26.202Z",
+      "astroNightHours": 7.71,
+      "darkHours": 7.71,
+      "moonDownWindow": {
+        "start": "2026-07-15T16:35:22.877Z",
+        "end": "2026-07-16T00:12:56.994Z"
+      },
+      "gcMaxAltitude": 37.5,
+      "gcTransit": "2026-07-15T18:29:46.406Z",
+      "planets": [
+        {
+          "name": "Saturn",
+          "altitude": 11.381196592225379,
+          "azimuth": 91.08049460226789,
+          "magnitude": 0.5948573921137044
+        }
+      ],
+      "meteor": null
+    },
+    {
+      "date": "2026-07-16",
+      "label": "Thu 16 Jul",
+      "score": 76,
+      "components": {
+        "moon": 48,
+        "gc": 28,
+        "meteor": 0
+      },
+      "moonIllumination": 0.08335729773339434,
+      "moonPhaseName": "Waxing Crescent",
+      "astroDusk": "2026-07-16T16:32:29.562Z",
+      "astroDawn": "2026-07-17T00:16:01.954Z",
+      "astroNightHours": 7.73,
+      "darkHours": 7.39,
+      "moonDownWindow": {
+        "start": "2026-07-16T16:54:55.322Z",
+        "end": "2026-07-17T00:13:32.425Z"
+      },
+      "gcMaxAltitude": 37.5,
+      "gcTransit": "2026-07-16T18:24:38.366Z",
+      "planets": [
+        {
+          "name": "Saturn",
+          "altitude": 12.28561582499033,
+          "azimuth": 91.47808142546755,
+          "magnitude": 0.590086360873622
+        }
+      ],
+      "meteor": null
+    },
+    {
+      "date": "2026-07-17",
+      "label": "Fri 17 Jul",
+      "score": 78,
+      "components": {
+        "moon": 44,
+        "gc": 28,
+        "meteor": 7
+      },
+      "moonIllumination": 0.15652406050810813,
+      "moonPhaseName": "Waxing Crescent",
+      "astroDusk": "2026-07-17T16:32:03.990Z",
+      "astroDawn": "2026-07-18T00:16:38.094Z",
+      "astroNightHours": 7.74,
+      "darkHours": 6.74,
+      "moonDownWindow": {
+        "start": "2026-07-17T17:34:30.509Z",
+        "end": "2026-07-18T00:14:08.233Z"
+      },
+      "gcMaxAltitude": 37.5,
+      "gcTransit": "2026-07-17T18:19:28.003Z",
+      "planets": [
+        {
+          "name": "Saturn",
+          "altitude": 13.189692838430886,
+          "azimuth": 91.87776913808882,
+          "magnitude": 0.5852732684837623
+        }
+      ],
+      "meteor": {
+        "name": "Perseids",
+        "zhr": 100,
+        "isPeak": false
+      }
+    }
+  ]
+}
