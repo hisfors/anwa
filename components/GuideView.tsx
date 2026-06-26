@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { GUIDE_LANGUAGES, type Tour } from "@/lib/guide-types";
+import SpeechControls from "@/components/SpeechControls";
 
 interface Props {
   initialTour: Tour;
@@ -103,6 +104,9 @@ export default function GuideView({
         <p className="mt-2 font-body text-sm leading-relaxed text-sage-light" dir="ltr">
           {tour.location} · {tour.night}
         </p>
+        <div className="mt-4">
+          <SpeechControls tour={tour} />
+        </div>
         <p className={`mt-4 max-w-3xl font-body text-base leading-relaxed text-bone-muted ${rtl ? "text-lg leading-loose" : ""}`}>
           {tour.intro}
         </p>

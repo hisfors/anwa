@@ -8,8 +8,9 @@ const NAV = [
   { href: "/proof", label: "The Proof", index: "01" },
   { href: "/planner", label: "The Planner", index: "02" },
   { href: "/guide", label: "The Guide", index: "03" },
-  { href: "/book", label: "Host & Book", index: "04" },
-  { href: "/methods", label: "Methods", index: "05" },
+  { href: "/companion", label: "Ask the Sky", index: "04" },
+  { href: "/book", label: "Host & Book", index: "05" },
+  { href: "/methods", label: "Methods", index: "06" },
 ];
 
 export default function SiteHeader() {
@@ -27,7 +28,7 @@ export default function SiteHeader() {
           <span className="arabic text-[1.6rem] text-brass/85">أنواء</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}

@@ -310,35 +310,63 @@ function SkyClock({ night, chartMs }: { night: NightScore; chartMs: number }) {
   const moonEnd = night.moonDownWindow.end ? new Date(night.moonDownWindow.end).getTime() : null;
   const gc = night.gcTransit ? new Date(night.gcTransit).getTime() : null;
 
+  // the best window to actually go: when the moon is down during full darkness
+  const bestStart = moonStart ?? dusk;
+  const bestEnd = moonEnd ?? dawn;
+  const hasBest = bestEnd - bestStart > 30 * 60000;
+  const coreInBest = gc !== null && gc >= bestStart && gc <= bestEnd;
+
   return (
     <div className="mt-5">
-      <span className="kicker">The night, hour by hour</span>
-      <div className="relative mt-7 h-9 w-full border border-sage/20 bg-field">
-        {/* astronomical night band */}
-        <div
-          className="absolute inset-y-0 bg-observatory"
-          style={{ left: pct(dusk), width: w(dusk, dawn) }}
-        />
-        {/* moon-down (best) window */}
-        {moonStart && moonEnd && (
+      <span className="kicker">When to look</span>
+      {hasBest ? (
+        <p className="mt-2 font-body text-lg leading-relaxed text-bone">
+          Go out between{" "}
+          <span className="font-mono text-brass">
+            {fmtLocalTime(new Date(bestStart))} and {fmtLocalTime(new Date(bestEnd))}
+          </span>
+          , when the moon is down and the sky is fully dark
+          {coreInBest && gc ? (
+            <>
+              {" "}- the Milky Way is highest around{" "}
+              <span className="font-mono text-brass">{fmtLocalTime(new Date(gc))}</span>
+            </>
+          ) : null}
+          .
+        </p>
+      ) : (
+        <p className="mt-2 font-body text-lg leading-relaxed text-bone">
+          The moon is up for most of this night, so it is not a great one. Pick a darker
+          night above for the clearest sky.
+        </p>
+      )}
+
+      <div className="relative mt-5 h-12 w-full border border-sage/20 bg-field">
+        {/* full dark band (dusk to dawn) */}
+        <div className="absolute inset-y-0 bg-observatory/70" style={{ left: pct(dusk), width: w(dusk, dawn) }} />
+        {/* the best window, brightest so the eye lands on it */}
+        {hasBest && (
           <div
-            className="absolute inset-y-0 border-x border-accent-bright/40 bg-accent-deep/40"
-            style={{ left: pct(moonStart), width: w(moonStart, moonEnd) }}
-          />
+            className="absolute inset-y-0 flex items-center justify-center bg-accent-deep"
+            style={{ left: pct(bestStart), width: w(bestStart, bestEnd) }}
+          >
+            <span className="font-body text-sm text-bone smallcaps">Best time to look</span>
+          </div>
         )}
         {/* Milky Way highest point marker */}
         {gc && gc >= t0 && gc <= t1 && (
-          <div className="absolute inset-y-0 w-px bg-brass" style={{ left: pct(gc) }}>
-            <span className="absolute -top-5 left-1 whitespace-nowrap font-body text-xs text-brass">Milky Way highest</span>
+          <div className="absolute -top-6 bottom-0 w-px bg-brass" style={{ left: pct(gc) }}>
+            <span className="absolute -top-0.5 left-1.5 whitespace-nowrap font-body text-xs text-brass">
+              Milky Way highest
+            </span>
           </div>
         )}
-        {/* current chart time marker */}
-        <div className="absolute inset-y-0 w-0.5 bg-bone" style={{ left: pct(chartMs) }} />
+        {/* slider position marker */}
+        <div className="absolute -bottom-1 top-0 w-0.5 bg-bone" style={{ left: pct(chartMs) }} />
       </div>
-      <div className="mt-2 flex justify-between font-body text-xs text-sage">
-        <span className="font-mono">{fmtLocalTime(new Date(t0))}</span>
-        <span className="text-accent-bright">Darkest hours, moon down</span>
-        <span className="font-mono">{fmtLocalTime(new Date(t1))}</span>
+      <div className="mt-2 flex justify-between font-body text-sm text-sage">
+        <span>Dusk {fmtLocalTime(new Date(dusk))}</span>
+        <span>Dawn {fmtLocalTime(new Date(dawn))}</span>
       </div>
     </div>
   );

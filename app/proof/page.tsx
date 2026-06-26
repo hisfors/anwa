@@ -113,8 +113,10 @@ export default function ProofPage() {
           Green marks dark sites, orange marks bright cities. Click anywhere to see how dark
           that spot is.
         </p>
-        <div className="mt-4">
-          <ProofMap />
+        <div className="full-bleed mt-6 px-5 sm:px-8">
+          <div className="mx-auto max-w-[100rem]">
+            <ProofMap />
+          </div>
         </div>
       </div>
 
@@ -130,7 +132,7 @@ export default function ProofPage() {
           glow only a truly dark sky shows. The thin orange line low on the horizon is
           distant city light, the one thing creeping in on this sky.
         </p>
-        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-[1.5fr_1fr]">
+        <div className="mt-6 grid grid-cols-1 items-start gap-6 md:grid-cols-[1.5fr_1fr]">
           <PhotoPlate
             src="/img/alquaa-sky-landscape.jpg"
             alt="Wide long-exposure of the Milky Way over the Al Qua'a dunes, green airglow across the sky and an orange light-pollution band on the horizon"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { GUIDE_LANGUAGES } from "@/lib/guide-types";
 import { Select } from "@/components/controls";
 
@@ -76,16 +77,24 @@ export default function BookingForm({
           {form.partySize === 1 ? "guest" : "guests"}. They will confirm from the host
           console. This is a request to book, not a charge.
         </p>
-        <button
-          type="button"
-          onClick={() => {
-            setState("idle");
-            setForm((f) => ({ ...f, guestName: "", guestEmail: "", message: "" }));
-          }}
-          className="btn-ghost mt-5"
-        >
-          Make another request
-        </button>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link
+            href={`/keepsake?date=${(chosen?.dateISO ?? "").slice(0, 10)}&name=${encodeURIComponent(form.guestName)}`}
+            className="btn"
+          >
+            Make a keepsake of your night
+          </Link>
+          <button
+            type="button"
+            onClick={() => {
+              setState("idle");
+              setForm((f) => ({ ...f, guestName: "", guestEmail: "", message: "" }));
+            }}
+            className="btn-ghost"
+          >
+            Make another request
+          </button>
+        </div>
       </div>
     );
   }
