@@ -13,10 +13,15 @@ export default function CompanionLauncher({ live }: { live: boolean }) {
 
   return (
     <>
+      {/* click anywhere outside to close */}
+      {open && (
+        <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} aria-hidden />
+      )}
+
       {/* the drawer */}
       {open && (
-        <div className="fixed bottom-24 right-4 z-50 flex w-[24rem] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-lg border border-sage/25 bg-raised shadow-2xl sm:right-6">
-          <div className="flex items-center justify-between border-b border-sage/15 bg-observatory/60 px-4 py-3">
+        <div className="fixed bottom-24 right-4 z-50 flex h-[32rem] max-h-[calc(100dvh-7rem)] w-[24rem] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-lg border border-sage/25 bg-raised shadow-2xl sm:right-6">
+          <div className="flex shrink-0 items-center justify-between border-b border-sage/15 bg-observatory/60 px-4 py-3">
             <div className="flex items-baseline gap-2">
               <span className="font-display text-lg text-bone">Ask the Sky</span>
               <span className="arabic text-sm text-brass/70">أنواء</span>
@@ -30,7 +35,7 @@ export default function CompanionLauncher({ live }: { live: boolean }) {
               Close
             </button>
           </div>
-          <div className="h-[28rem]">
+          <div className="min-h-0 flex-1">
             <Companion live={live} compact />
           </div>
         </div>

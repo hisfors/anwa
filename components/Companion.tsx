@@ -70,7 +70,7 @@ export default function Companion({ live, compact = false }: { live: boolean; co
   }
 
   return (
-    <div className={compact ? "" : "mt-8"}>
+    <div className={compact ? "h-full" : "mt-8"}>
       {!live && !compact && (
         <p className="mb-4 rounded-md border border-sage/20 bg-raised/60 px-4 py-3 font-body text-sm leading-relaxed text-sage-light">
           The companion answers fully once the guide is connected. Until then it still gives you

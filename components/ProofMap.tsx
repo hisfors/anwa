@@ -113,7 +113,7 @@ export default function ProofMap() {
 
   return (
     <div className="panel overflow-hidden">
-      <div ref={containerRef} className="h-[560px] w-full" />
+      <div ref={containerRef} className="h-[400px] w-full sm:h-[440px]" />
       <div className="border-t border-sage/15 px-4 py-3">
         {pin ? (
           <div className="flex flex-col gap-1.5">
