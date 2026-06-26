@@ -8,39 +8,39 @@ export const metadata = { title: "Methods & Sources | Anwa" };
 
 const PROVENANCE = [
   {
-    kind: "Real, measured on site",
+    kind: "Photographed at Al Qua'a",
     tone: "brass",
     items: [
-      "The two long-exposure photographs of the Al Qua'a sky. Team originals, not stock.",
+      "The two long-exposure photographs of the night sky. Photographed by the Anwa team.",
     ],
   },
   {
     kind: "Published, cited",
     tone: "sage",
     items: [
-      "Bortle class per location, from the Falchi 2016 model and VIIRS night radiance.",
-      "The meteor shower calendar (peak dates and ZHR), from the IMO working list.",
-      "Star positions and magnitudes, from the HYG catalogue (2,072 stars to mag 5.2).",
-      "Arabic star names and meanings, from the standard star-name references.",
+      "How dark each location is (its Bortle class), from published light-pollution maps.",
+      "The meteor shower calendar, with peak dates and how many meteors per hour to expect.",
+      "Star positions and brightness, covering the stars you can see with the naked eye.",
+      "Arabic star names and their meanings, from the standard star-name references.",
     ],
   },
   {
-    kind: "Computed here",
+    kind: "Calculated for each night",
     tone: "accent",
     items: [
-      "Moon illumination and phase, twilight times, planet positions, with astronomy-engine.",
-      "Galactic Centre altitude and transit, by the standard equatorial-to-horizontal transform.",
-      "The mag/arcsec2 figure, derived as the midpoint of the published range for each Bortle class.",
-      "The night score, from moon-down fraction, core altitude, and the meteor calendar.",
+      "The Moon's phase and how lit up it is, plus dusk, dawn and the planets on view.",
+      "How high the Milky Way bright core climbs, and when it reaches its highest point.",
+      "A sky-darkness figure for each site, from the published range for its Bortle class.",
+      "The night score, from how dark the Moon leaves the sky, the core height, and meteors.",
     ],
   },
   {
     kind: "AI generated",
     tone: "sage",
     items: [
-      "Only the narrated guided tour, and only when an API key is present.",
-      "The model is grounded in the curated heritage dataset and told not to invent lore.",
-      "With no key, a committed sample tour is served instead. No other figure on the platform is AI generated.",
+      "Only the narrated guided tour is written by AI.",
+      "It draws on our curated heritage notes about the sky and the stars above Al Qua'a.",
+      "Every other figure on the site is photographed, published, or calculated, never written by AI.",
     ],
   },
 ];
@@ -58,9 +58,9 @@ export default function MethodsPage() {
     <div className="py-10">
       <SectionHeader
         index="06"
-        kicker="Methods & Sources · the honesty page"
-        title="Every number, where it comes from and how to check it"
-        lead="This page documents the data sources, the libraries, the formulas, and exactly what is real-measured, published, computed, or AI-generated. Nothing on the platform is fabricated. Where a figure is derived rather than directly measured, it is labelled as such here and in the product."
+        kicker="How it works"
+        title="Where the numbers come from"
+        lead="For anyone who wants the detail: where each figure comes from, and which ones are photographed at Al Qua'a, published, calculated for each night, or written by AI. Where a figure is an estimate rather than a direct measurement, it says so."
       />
 
       {/* provenance */}
@@ -86,104 +86,98 @@ export default function MethodsPage() {
 
       {/* formulas */}
       <div className="mt-16 border-t border-sage/20 pt-5">
-        <span className="kicker">Formulas and assumptions</span>
+        <span className="kicker">How each figure is worked out</span>
         <div className="mt-4 grid grid-cols-1 gap-x-10 gap-y-5 md:grid-cols-2">
-          <Method title="Astronomical darkness">
-            True dark is when the Sun is more than 18 degrees below the horizon. Dusk and dawn
-            are found by searching the Sun&apos;s altitude with astronomy-engine.
+          <Method title="The hours of full darkness">
+            Full darkness is the stretch of night when the Sun sits well below the horizon and
+            no glow is left in the sky. We work out when it begins and ends each night.
           </Method>
-          <Method title="Galactic Centre altitude">
-            The Milky Way core is taken at Sgr A*, RA 266.42, Dec -28.99. Its altitude is the
-            standard transform alt = asin(sin&delta; sin&phi; + cos&delta; cos&phi; cosH), where H is the
-            hour angle from local sidereal time. At this latitude it peaks near 90 - |&phi; - &delta;|, about 37 degrees.
+          <Method title="How high the Milky Way core climbs">
+            The bright core of the Milky Way rises and sets like the Sun and Moon. We track how
+            high it gets above the horizon and when it reaches its highest point. From Al Qua'a
+            it climbs to about 37 degrees, roughly a third of the way up the sky.
           </Method>
-          <Method title="Bortle to mag/arcsec2">
-            Each location&apos;s Bortle class comes from published light-pollution data. The
-            mag/arcsec2 shown is the midpoint of the standard zenith brightness range for that
-            class. It is a derived figure, not an on-site sensor reading, and the range is shown with it.
-            The raw upward radiance behind each class can be queried per coordinate from the cited
-            VIIRS and Falchi sources.
+          <Method title="How dark the sky is">
+            Each site has a Bortle rating from published light-pollution maps, where 1 is the
+            darkest sky and 9 the brightest. From that we give a sky-darkness figure, shown with
+            its range. It is an estimate for the area, not a reading taken at the spot.
           </Method>
-          <Method title="Brightness ratio">
-            The factor by which one sky is darker than another is 10^(0.4 &times; &Delta;mag), since each
-            magnitude per square arcsecond is a factor of about 2.512 in surface brightness.
+          <Method title="Comparing two skies">
+            When we say one sky is a number of times darker than another, that follows directly
+            from the difference in their darkness figures.
           </Method>
-          <Method title="Night score (0-100)">
-            Moon darkness up to 50, as the fraction of the astronomical night with the Moon
-            down. Galactic Centre altitude up to 30. Meteor peak up to 20, scaled by ZHR.
-            All inputs are shown per night on the Planner.
+          <Method title="The night score (out of 100)">
+            Up to 50 points for how much of the dark hours the Moon leaves the sky truly dark,
+            up to 30 for how high the Milky Way core climbs, and up to 20 if a meteor shower
+            peaks that night. Every part is shown for each night.
           </Method>
-          <Method title="Star chart">
-            A stereographic projection of the visible dome, zenith at centre, horizon at the
-            edge, north up and east left as when looking up. Stars sized by magnitude. The
-            Milky Way band is drawn from the galactic plane via the standard rotation matrix.
+          <Method title="The star chart">
+            A round map of the whole sky as you would see it lying back and looking up, with the
+            point overhead at the centre and the horizon around the edge. Brighter stars are
+            drawn larger, and the soft band of the Milky Way is drawn in too.
           </Method>
         </div>
+        <p className="mt-5 font-body text-sm text-sage-light">
+          The exact trigonometry behind the core height and the star map uses the standard
+          equations astronomers use; we have kept the plain version above.
+        </p>
       </div>
 
       {/* reproduce */}
       <div className="mt-16 border-t border-sage/20 pt-5">
-        <span className="kicker">Reproduce the claims</span>
-        <h3 className="mt-2 font-display text-2xl text-bone">Check the committed sample yourself</h3>
+        <span className="kicker">A worked example</span>
+        <h3 className="mt-2 font-display text-2xl text-bone">The next dark-night window</h3>
         <div className="panel-deep mt-4 p-5">
           <p className="font-body text-base leading-relaxed text-bone">
-            The committed sample optimal window was computed from a fixed reference date,
-            {" "}{fmtLocalDate(new Date(sampleWindow.generatedFrom))}, and is reproducible with{" "}
-            <code className="font-mono text-sm text-brass">npx tsx scripts/generate-sample.ts</code>.
+            Worked out from a fixed reference date,{" "}
+            {fmtLocalDate(new Date(sampleWindow.generatedFrom))}. Here are the numbers, and you
+            can check them against any sky app.
           </p>
           <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-sage/15 pt-4 sm:grid-cols-4">
             <RV label="New moon" value={fmtLocalDate(new Date(sampleWindow.newMoon))} />
             <RV label="Best night" value={best.label} />
-            <RV label="Moon illum." value={`${(best.moonIllumination * 100).toFixed(1)}%`} />
-            <RV label="Core transit" value={`${fmtLocalTime(best.gcTransit ? new Date(best.gcTransit) : null)} local`} />
+            <RV label="Moonlight" value={`${(best.moonIllumination * 100).toFixed(1)}%`} />
+            <RV label="Core at its highest" value={`${fmtLocalTime(best.gcTransit ? new Date(best.gcTransit) : null)} local`} />
           </dl>
           <p className="mt-4 font-body text-base leading-relaxed text-bone-muted">
-            To verify independently: open Stellarium or timeanddate.com, set the location to Al
-            Qua&apos;a (23.52N, 55.49E) and the date to the best night above, and confirm the
-            moon phase, the twilight times, and the altitude of the galactic centre. They will match.
+            If you want to check for yourself, open any sky app, set the place to Al Qua&apos;a
+            and the date to the best night above, and the moon phase, the hours of full
+            darkness, and the height of the Milky Way core will line up.
           </p>
         </div>
       </div>
 
       {/* meteor calendar */}
       <div className="mt-16 border-t border-sage/20 pt-5">
-        <span className="kicker">Embedded meteor calendar · IMO</span>
+        <span className="kicker">Meteor shower calendar</span>
+        <p className="mt-2 font-body text-sm text-sage-light">
+          Peak date and how many meteors per hour to expect, from the International Meteor
+          Organization.
+        </p>
         <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1.5 sm:grid-cols-3 md:grid-cols-3">
           {METEOR_SHOWERS.map((m) => (
             <div key={m.id} className="flex items-baseline justify-between border-b border-sage/10 py-1.5">
               <span className="font-body text-sm text-bone">{m.name}</span>
-              <span className="font-mono text-xs text-sage-light">
-                {String(m.peakDay).padStart(2, "0")}/{String(m.peakMonth).padStart(2, "0")} · ZHR {m.zhr}
+              <span className="font-body text-xs text-sage-light">
+                {String(m.peakDay).padStart(2, "0")}/{String(m.peakMonth).padStart(2, "0")} · <span className="font-mono">{m.zhr}</span>/hr
               </span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* sources + libraries */}
-      <div className="mt-16 grid grid-cols-1 gap-10 border-t border-sage/20 pt-5 md:grid-cols-2">
-        <div>
-          <span className="kicker">Primary sources</span>
-          <ul className="mt-3 space-y-3">
-            {SOURCES.map((s) => (
-              <li key={s.id} className="border-b border-sage/12 pb-3">
-                <p className="font-body text-sm text-bone">{s.label}</p>
-                <p className="mt-0.5 font-body text-xs text-sage-light">{s.detail}</p>
-                <Cite href={s.url}>open source</Cite>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <span className="kicker">Libraries and data</span>
-          <ul className="mt-3 space-y-3">
-            <Lib name="astronomy-engine" detail="Accurate ephemeris for Sun, Moon, planets, twilight and transits. MIT." url="https://github.com/cosinekitty/astronomy" />
-            <Lib name="MapLibre GL JS" detail="Keyless interactive map, with the CARTO dark basemap tiles." url="https://maplibre.org/" />
-            <Lib name="HYG star database (v41)" detail="Star positions and magnitudes for the chart. The committed data/bright-stars.json is the HYG v41 catalogue filtered to apparent magnitude 5.2 or brighter, giving 2,072 stars." url="https://github.com/astronexus/HYG-Database" />
-            <Lib name="Prisma + SQLite" detail="Local, file-based persistence for hosts, sites, availability and bookings." url="https://www.prisma.io/" />
-            <Lib name="Anthropic API" detail="Server-side, for the multilingual Guide only. Optional; degrades to the sample tour." url="https://docs.anthropic.com/" />
-          </ul>
-        </div>
+      {/* sources */}
+      <div className="mt-16 border-t border-sage/20 pt-5">
+        <span className="kicker">Primary sources</span>
+        <ul className="mt-3 grid grid-cols-1 gap-x-10 gap-y-3 md:grid-cols-2">
+          {SOURCES.map((s) => (
+            <li key={s.id} className="border-b border-sage/12 pb-3">
+              <p className="font-body text-sm text-bone">{s.label}</p>
+              <p className="mt-0.5 font-body text-xs text-sage-light">{s.detail}</p>
+              <Cite href={s.url}>view source</Cite>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
@@ -201,19 +195,8 @@ function Method({ title, children }: { title: string; children: React.ReactNode 
 function RV({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-sage">{label}</dt>
+      <dt className="font-body text-xs text-sage">{label}</dt>
       <dd className="mt-0.5 font-mono text-sm tabular-nums text-brass">{value}</dd>
     </div>
-  );
-}
-
-function Lib({ name, detail, url }: { name: string; detail: string; url: string }) {
-  return (
-    <li className="border-b border-sage/12 pb-3">
-      <a href={url} target="_blank" rel="noreferrer" className="font-body text-sm text-bone hover:text-brass">
-        {name}
-      </a>
-      <p className="mt-0.5 font-body text-xs text-sage-light">{detail}</p>
-    </li>
   );
 }

@@ -5,29 +5,29 @@
     "rtl": false,
     "title": "The dark sky over Al Qua'a",
     "night": "Sunday 12 July 2026, new-moon week",
-    "location": "Al Qua'a, 23.52N 55.49E, Bortle 2",
-    "intro": "A guided walk through the night for new-moon week, when the Milky Way core stands highest. The order follows the real sky: where to look, when, and the Arab and Bedouin names for what you are seeing. Times are local, UTC+4.",
+    "location": "Al Qua'a · a Bortle 2 of 9 sky, among the darkest you can find",
+    "intro": "A guided walk through the night during new-moon week, when the Milky Way bright core stands highest. The order follows the real sky: where to look, when, and the old Arab and Bedouin names for what you are seeing. Times are local.",
     "segments": [
       {
         "time": "20:34",
-        "phase": "Astronomical dark begins",
+        "phase": "Full darkness begins",
         "heading": "The eagles rise in the east",
         "facts": [
-          { "label": "Sun", "value": "-18 deg (true dark)" },
-          { "label": "al-Waqi' (Vega)", "value": "49 deg alt / az 57 NE" },
-          { "label": "Venus", "value": "15 deg, low west" }
+          { "label": "Sky", "value": "fully dark now" },
+          { "label": "al-Waqi' (Vega)", "value": "halfway up, northeast" },
+          { "label": "Venus", "value": "low in the west" }
         ],
         "narration": "As the last of the twilight drains from the west, catch Venus low on the horizon, then turn to the northeast. Two bright stars are climbing. The higher one is al-Nasr al-Waqi', the swooping eagle the Arabs saw in these stars, the star later charts call Vega. Below it follows al-Nasr al-Ta'ir, the flying eagle, our Altair. They stand on either side of the Milky Way that will rise between them tonight.",
         "stars": ["al-Waqi'", "al-Ta'ir", "Dhanab al-Dajaja"]
       },
       {
         "time": "22:39",
-        "phase": "Galactic Centre transit",
+        "phase": "The Milky Way core is highest",
         "heading": "The heart of the galaxy, due south",
         "facts": [
-          { "label": "Milky Way core", "value": "37.5 deg, due south" },
-          { "label": "Moon", "value": "below horizon" },
-          { "label": "Sky brightness", "value": "21.8 mag/arcsec2 (Bortle 2, derived)" }
+          { "label": "Milky Way core", "value": "highest point, due south" },
+          { "label": "Moon", "value": "below the horizon" },
+          { "label": "Sky darkness", "value": "Bortle 2 of 9, among the darkest" }
         ],
         "narration": "This is the centrepiece of the night. The bright knot of the summer Milky Way, the direction of our galaxy's own centre, now stands at its highest in the south, more than a third of the way up the sky. From a sky this dark you see it with the naked eye, a pale cloudy river arching overhead. Three stars frame it: al-Waqi' and al-Ta'ir, the two eagles, and Dhanab al-Dajaja, the tail of the hen, the figure the Arabs traced along the bright stream.",
         "stars": ["al-Waqi'", "al-Ta'ir", "Dhanab al-Dajaja"]
@@ -37,21 +37,21 @@
         "phase": "The core leans west",
         "heading": "Saturn climbs as the core turns",
         "facts": [
-          { "label": "Saturn", "value": "17 deg, southeast" },
-          { "label": "Fam al-Hut (Fomalhaut)", "value": "23 deg, low south" },
-          { "label": "Milky Way core", "value": "turning toward southwest" }
+          { "label": "Saturn", "value": "low in the southeast" },
+          { "label": "Fam al-Hut (Fomalhaut)", "value": "low in the south" },
+          { "label": "Milky Way core", "value": "turning toward the southwest" }
         ],
         "narration": "The core has begun to lean toward the southwest. In the southeast, Saturn has cleared the horizon, the slowest and steadiest of the wandering stars. Low in the south sits a lone bright star with little around it: Fam al-Hut, the mouth of the southern fish. With nothing near it, the Bedouin used it as a clean seasonal marker in the autumn dawns to come.",
         "stars": ["Fam al-Hut"]
       },
       {
         "time": "04:13",
-        "phase": "Before the morning twilight",
+        "phase": "Just before the morning light",
         "heading": "The Pleiades return before dawn",
         "facts": [
-          { "label": "al-Thurayya (Pleiades)", "value": "29 deg, northeast" },
-          { "label": "al-Dabaran (Aldebaran)", "value": "16 deg, east" },
-          { "label": "Saturn", "value": "59 deg, high south" }
+          { "label": "al-Thurayya (Pleiades)", "value": "rising in the northeast" },
+          { "label": "al-Dabaran (Aldebaran)", "value": "low in the east" },
+          { "label": "Saturn", "value": "high in the south" }
         ],
         "narration": "In the last dark hour, watch the northeast. A tight little knot of stars lifts clear of the horizon: al-Thurayya, the Pleiades, one of the most loved sights in Arab sky lore and still a common name for a daughter. Behind it climbs al-Dabaran, the follower, named because it forever chases the Pleiades across the sky. A dawn return like this was one of the signs the old Anwa calendar read to know the year had turned.",
         "stars": ["al-Thurayya", "al-Dabaran"]
@@ -59,11 +59,11 @@
     ],
     "closing": "By the time the eastern sky pales you will have watched the Milky Way core cross the whole southern sky and the Pleiades come back to the dawn, the same passage the Anwa calendar was built to read. Walk back slowly and let your eyes keep the dark.",
     "grounding": [
-      "Positions computed for Al Qua'a (23.52N, 55.49E) on the night of 12 July 2026 with astronomy-engine.",
-      "Galactic Centre transit altitude 37.5 deg matches 90 - |lat - dec| for this latitude.",
-      "Star names and meanings from the curated heritage dataset (Suhail, al-Waqi', al-Ta'ir, al-Thurayya and others).",
-      "Sky brightness 21.8 mag/arcsec2 is the published midpoint for the site's Bortle 2 class, not an on-site sensor reading. See the Methods page.",
-      "The Anwa and Manazil al-Qamar systems are the documented Bedouin star calendars."
+      "This tour is for the night of 12 July 2026 at Al Qua'a.",
+      "The Milky Way bright core reaches its highest point, due south, around half past ten.",
+      "The star names and their meanings come from old Arab and Bedouin sky lore: Suhail, al-Waqi', al-Ta'ir, al-Thurayya and others.",
+      "Al Qua'a has a Bortle 2 of 9 sky, among the darkest you can find, so the Milky Way shows to the naked eye.",
+      "The Anwa and Manazil al-Qamar are the old Bedouin star calendars these signs are read by."
     ],
     "source": "sample"
   },
@@ -73,7 +73,7 @@
     "rtl": true,
     "title": "سماء القُوع المظلمة",
     "night": "الأحد 12 يوليو 2026، أسبوع المُحاق",
-    "location": "القُوع، 23.52 شمالاً 55.49 شرقاً، بورتل 2",
+    "location": "القُوع · سماء بورتل 2 من 9، من أصفى السماوات وأشدّها ظلمة",
     "intro": "جولة موجَّهة في الليل خلال أسبوع المُحاق، حين يرتفع قلب درب التبانة إلى أعلى نقطة له. الترتيب يتبع السماء الحقيقية: أين تنظر، ومتى، والأسماء العربية والبدوية لما تراه. الأوقات محلية بتوقيت غرينتش +4.",
     "segments": [
       {
@@ -95,7 +95,7 @@
         "facts": [
           { "label": "قلب درب التبانة", "value": "37.5 درجة، جنوباً تماماً" },
           { "label": "القمر", "value": "تحت الأفق" },
-          { "label": "إضاءة السماء", "value": "21.8 mag/arcsec2 (بورتل 2، قيمة مشتقة)" }
+          { "label": "صفاء السماء", "value": "بورتل 2 من 9، من أشدّها ظلمة" }
         ],
         "narration": "هذه ذروة الليلة. العقدة اللامعة من درب التبانة الصيفي، وهي اتجاه مركز مجرّتنا نفسه، تقف الآن في أعلى نقطة لها جنوباً، أكثر من ثلث ارتفاع السماء. من سماء بهذا الصفاء تراها بالعين المجرّدة، نهراً غائماً شاحباً يقوس فوق رأسك. وتُحيط بها ثلاثة نجوم: الواقع والطائر، النَّسران، وذنب الدجاجة، الصورة التي رسمها العرب على امتداد التيّار اللامع.",
         "stars": ["الواقع", "الطائر", "ذنب الدجاجة"]
@@ -127,11 +127,11 @@
     ],
     "closing": "حين يشحب الأفق الشرقي تكون قد رأيت قلب درب التبانة يعبر سماء الجنوب كلها، والثريّا تعود إلى الفجر، وهو المسار نفسه الذي بُني تقويم الأنواء لقراءته. عُد على مهل، ودع عينيك تحتفظان بالظلام.",
     "grounding": [
-      "حُسبت المواقع للقُوع (23.52 شمالاً، 55.49 شرقاً) في ليلة 12 يوليو 2026 باستخدام astronomy-engine.",
-      "ارتفاع عبور قلب المجرّة 37.5 درجة يطابق 90 - |خط العرض - الميل| لهذا الموقع.",
-      "أسماء النجوم ومعانيها من قاعدة التراث المنسّقة (سهيل، الواقع، الطائر، الثريّا وغيرها).",
-      "إضاءة السماء 21.8 mag/arcsec2 هي القيمة الوسطى المنشورة لفئة بورتل 2 للموقع، وليست قراءة من جهاز في الموقع. انظر صفحة المنهجية.",
-      "نظاما الأنواء ومنازل القمر هما التقويمان النجميان البدويان الموثّقان."
+      "هذه الجولة لليلة 12 يوليو 2026 في القُوع.",
+      "يبلغ قلب درب التبانة أعلى نقطة له، في كبد الجنوب، نحو العاشرة والنصف.",
+      "أسماء النجوم ومعانيها من تراث السماء العربي والبدوي القديم: سهيل، الواقع، الطائر، الثريّا وغيرها.",
+      "سماء القُوع من فئة بورتل 2 من 9، من أصفى السماوات وأشدّها ظلمة، فيظهر فيها درب التبانة للعين المجرّدة.",
+      "الأنواء ومنازل القمر هما التقويمان النجميان البدويان القديمان اللذان تُقرأ بهما هذه العلامات."
     ],
     "source": "sample"
   }

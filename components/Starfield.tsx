@@ -42,11 +42,13 @@ const STARS: Star[] = Array.from({ length: 180 }, () => {
   };
 });
 
+// angle 215deg streaks down-right (start upper-left); 330deg streaks down-left
+// (start upper-right). translateX is negative so the head leads, tail trails.
 const SHOOTING = [
-  { top: "9%", left: "78%", dur: "13s", delay: "3s" },
-  { top: "26%", left: "52%", dur: "17s", delay: "9s" },
-  { top: "55%", left: "88%", dur: "15s", delay: "15s" },
-  { top: "70%", left: "35%", dur: "19s", delay: "22s" },
+  { top: "7%", left: "6%", angle: "215deg", dur: "9s", delay: "1.5s" },
+  { top: "3%", left: "40%", angle: "215deg", dur: "13s", delay: "7s" },
+  { top: "9%", left: "92%", angle: "330deg", dur: "11s", delay: "13s" },
+  { top: "22%", left: "66%", angle: "330deg", dur: "16s", delay: "20s" },
 ];
 
 export default function Starfield() {
@@ -89,6 +91,8 @@ export default function Starfield() {
             {
               top: s.top,
               left: s.left,
+              "--a": s.angle,
+              "--end": "-540px",
               "--shoot-dur": s.dur,
               "--shoot-delay": s.delay,
             } as CSSProperties

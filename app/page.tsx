@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import StarChart from "@/components/StarChart";
 import { Figure, Stat } from "@/components/ui";
-import { DARKNESS_BY_ID, brightnessRatio, SOURCE_BY_ID } from "@/data/darkness";
+import { DARKNESS_BY_ID, brightnessRatio } from "@/data/darkness";
 import { fmtLocalTime, fmtLocalDate } from "@/lib/astronomy";
 import sampleWindow from "@/data/sample-window.json";
 
@@ -11,31 +11,31 @@ const MODULES = [
     index: "01",
     href: "/proof",
     title: "The Proof",
-    desc: "Darkness measured against the cities, with raw figures, units and sources, plus the team's own photographs.",
-    figure: "21.8",
-    unit: "mag/arcsec2",
+    desc: "See how dark it is here next to the cities, with two photographs taken on site at Al Qua'a.",
+    figure: "33×",
+    unit: "darker than Dubai",
   },
   {
     index: "02",
     href: "/planner",
     title: "The Planner",
-    desc: "The best stargazing nights, computed months ahead from real astronomy. No model, just ephemeris you can check.",
+    desc: "Find the best nights to stargaze in the months ahead, worked out from the moon and the stars.",
     figure: "78",
-    unit: "/ 100 score",
+    unit: "top night score",
   },
   {
     index: "03",
     href: "/guide",
     title: "The Guide",
-    desc: "A full guided tour in any language, grounded in real Arab and Bedouin star lore, so an Arabic-only host can guide the world.",
-    figure: "8+",
+    desc: "A guided tour of the night in any language, with the old Arabic names for the stars you can see.",
+    figure: "8",
     unit: "languages",
   },
   {
     index: "04",
     href: "/book",
     title: "Host & Book",
-    desc: "Families list a desert site and take bookings tied to the genuinely dark nights, turning the sky into a second income.",
+    desc: "Book a night with a local camel-farming family, who host you under the sky on a dark night.",
     figure: "4",
     unit: "host families",
   },
@@ -47,7 +47,6 @@ export default function HomePage() {
   const ratio = brightnessRatio(alquaa.sqm, dubai.sqm);
   const best = sampleWindow.best;
   const chartTime = best.gcTransit ?? best.astroDusk ?? sampleWindow.newMoon;
-  const falchi = SOURCE_BY_ID.falchi2016;
 
   return (
     <div className="pb-8">
@@ -69,9 +68,9 @@ export default function HomePage() {
                 A world-class dark sky that earns the families who hold it nothing.
                 Anwa changes that.
               </h1>
-              <div className="flex items-center justify-between font-mono text-[0.6rem] uppercase tracking-[0.16em] text-sage">
-                <span>Long exposure · Al Qua&apos;a, UAE · team original</span>
-                <span className="hidden sm:inline">Milky Way core · green airglow visible</span>
+              <div className="flex items-center justify-between font-body text-[0.8rem] text-sage smallcaps">
+                <span>Al Qua&apos;a, UAE. Photographed by the Anwa team.</span>
+                <span className="hidden sm:inline">The Milky Way bright core, with green airglow</span>
               </div>
             </div>
           </div>
@@ -83,11 +82,10 @@ export default function HomePage() {
             <p className="font-body text-lg leading-relaxed text-bone">
               Al Qua&apos;a is a rural camel-farming community near Al Ain, on the
               Tropic of Cancer, with some of the darkest skies on Earth. The families
-              here depend on camel farming as a single income, while the night sky
-              above them, a rare and shrinking natural asset, earns nothing and is
-              measured by no one. Anwa turns that sky into a bookable, AI-guided,
-              heritage-rooted experience the families can host and earn from, and it
-              proves and protects the darkness with real data.
+              here live by camel farming, while the night sky above them, a rare and
+              shrinking thing, earns nothing. Anwa lets you book a night under that
+              sky, hosted by the families who hold it, with a guided tour of the stars
+              in your own language.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="/planner" className="btn">
@@ -99,10 +97,10 @@ export default function HomePage() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-5 self-start border-l border-sage/15 pl-5">
-            <Stat label="Al Qua'a sky" value={alquaa.sqm.toFixed(1)} unit="mag/arcsec2" tone="brass" sub={`Bortle ${alquaa.bortle}`} />
-            <Stat label="vs Dubai" value={dubai.sqm.toFixed(1)} unit="mag/arcsec2" sub={`Bortle ${dubai.bortle}`} />
-            <Stat label="Darker than Dubai" value={`${ratio.toFixed(0)}x`} tone="brass" sub="from the magnitude gap" />
-            <Stat label="Catalogued stars" value="2,072" sub="real positions, drawn" />
+            <Stat label="Al Qua'a sky darkness" value={alquaa.sqm.toFixed(1)} tone="brass" sub={`Bortle ${alquaa.bortle} of 9 (1 is the darkest)`} />
+            <Stat label="Dubai sky darkness" value={dubai.sqm.toFixed(1)} sub={`Bortle ${dubai.bortle} of 9`} />
+            <Stat label="Darker than Dubai" value={`${ratio.toFixed(0)}x`} tone="brass" sub="about this much darker" />
+            <Stat label="Stars you can see" value="2,072" sub="each shown where it sits" />
           </div>
         </div>
       </section>
@@ -110,20 +108,20 @@ export default function HomePage() {
       {/* The computed centrepiece: a real star chart, not a decorative blob */}
       <section className="mt-24 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr]">
         <div>
-          <span className="kicker">The interactive almanac</span>
-          <h2 className="mt-3 font-display text-[2rem] font-medium leading-[1.1] text-bone sm:text-[2.4rem]">
-            The sky as it will really stand on the next optimal night
+          <span className="kicker">The sky over Al Qua&apos;a</span>
+          <h2 className="mt-3 font-display text-[2.1rem] font-medium leading-[1.1] text-bone sm:text-[2.5rem]">
+            See the sky on the next dark night
           </h2>
           <p className="mt-4 max-w-xl font-body text-lg leading-relaxed text-bone-muted">
-            This is a computed chart, not an illustration. Every dot is a real
-            star at its real place for Al Qua&apos;a at the moment the Milky Way
-            core crosses due south. The brass stars carry their Arab names. The
-            faint band is the galactic plane, drawn from the same coordinates.
+            This is the sky above Al Qua&apos;a on the next dark night, the 12th of
+            July, as if you lay back and looked straight up. Each dot is a star where
+            it will actually be. The gold ones carry their old Arabic names, and the
+            soft cloudy band is the Milky Way.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5 border-t border-sage/15 pt-5">
-            <Stat label="Night" value={best.label.split(" ").slice(1).join(" ")} sub="2026, new-moon week" />
-            <Stat label="Core transit" value={fmtLocalTime(new Date(chartTime))} unit="local" sub="due south" tone="brass" />
-            <Stat label="Core altitude" value={best.gcMaxAltitude} unit="deg" tone="brass" sub="highest of the night" />
+            <Stat label="Night" value={best.label.split(" ").slice(1).join(" ")} sub="2026, around the new moon" />
+            <Stat label="Milky Way at its highest" value={fmtLocalTime(new Date(chartTime))} unit="local time" sub="looking due south" tone="brass" />
+            <Stat label="How high it climbs" value={best.gcMaxAltitude} unit="degrees up" tone="brass" sub="well clear of the horizon" />
             <Stat label="Moon" value={Math.round(best.moonIllumination * 100)} unit="% lit" sub={best.moonPhaseName} />
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -135,15 +133,15 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="panel-deep p-4 sm:p-6">
+        <div className="border border-sage/15 bg-[#080C12] p-4 sm:p-6">
           <StarChart
             latitude={sampleWindow.location.latitude}
             longitude={sampleWindow.location.longitude}
             dateISO={chartTime}
           />
-          <div className="mt-3 flex items-center justify-between font-mono text-[0.6rem] uppercase tracking-[0.14em] text-sage">
-            <span>Stereographic dome · N up, E left</span>
-            <span>{fmtLocalTime(new Date(chartTime))} local · 12 Jul 2026</span>
+          <div className="mt-3 flex items-center justify-between font-body text-[0.8rem] text-sage smallcaps">
+            <span>Looking straight up, north at the top</span>
+            <span className="font-mono">{fmtLocalTime(new Date(chartTime))} · 12 Jul 2026</span>
           </div>
         </div>
       </section>
@@ -151,9 +149,9 @@ export default function HomePage() {
       {/* Module index, a ledger, not bento cards */}
       <section className="mt-24">
         <div className="flex items-baseline justify-between border-t border-sage/20 pt-5">
-          <span className="kicker">Four connected modules</span>
-          <span className="font-body text-[0.8rem] text-sage smallcaps">
-            Prove · Plan · Guide · Earn
+          <span className="kicker">What you can do here</span>
+          <span className="font-body text-[0.85rem] text-sage smallcaps">
+            For visitors and host families
           </span>
         </div>
         <div className="mt-4 divide-y divide-sage/12 border-y border-sage/12">
@@ -180,41 +178,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testable claims, the falsifiability spine, on the front page */}
+      {/* Why this place, in plain terms */}
       <section className="mt-24">
-        <span className="kicker">Claims you can check</span>
-        <h2 className="mt-3 font-display text-[2rem] font-medium text-bone">Everything here is testable</h2>
+        <span className="kicker">Why Al Qua&apos;a</span>
+        <h2 className="mt-3 font-display text-[2.1rem] font-medium text-bone">A rare sky, an hour from the city</h2>
         <div className="mt-6 grid grid-cols-1 gap-px overflow-hidden border border-sage/15 bg-sage/15 sm:grid-cols-3">
           <div className="bg-raised p-6">
-            <p className="font-body text-[1.05rem] leading-relaxed text-bone">
-              Al Qua&apos;a sky brightness is{" "}
-              <Figure value={alquaa.sqm.toFixed(1)} unit="mag/arcsec2" tone="brass" /> (Bortle {alquaa.bortle}),
-              versus Dubai at <Figure value={dubai.sqm.toFixed(1)} unit="mag/arcsec2" />, about{" "}
-              {ratio.toFixed(0)}x darker.
+            <h3 className="font-display text-xl text-brass">About {ratio.toFixed(0)} times darker than Dubai</h3>
+            <p className="mt-2 font-body text-[1.05rem] leading-relaxed text-bone-muted">
+              The Milky Way, the planets, even faint meteors show to the naked eye here.
+              In the city, almost none of that is left.
             </p>
-            <a href={falchi.url} target="_blank" rel="noreferrer" className="mt-3 inline-block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-sage-light hover:text-brass">
-              Source: Falchi et al. 2016
-            </a>
-          </div>
-          <div className="bg-raised p-6">
-            <p className="font-body text-[1.05rem] leading-relaxed text-bone">
-              The next optimal window is around the{" "}
-              {fmtLocalDate(new Date(sampleWindow.newMoon))}{" "}
-              new moon, with the best night under{" "}
-              <Figure value={Math.round(best.moonIllumination * 100)} unit="% moon" tone="brass" />, computed from ephemeris.
-            </p>
-            <Link href="/methods" className="mt-3 inline-block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-sage-light hover:text-brass">
-              Verify against Stellarium
+            <Link href="/proof" className="mt-3 inline-block font-body text-base text-sage-light smallcaps hover:text-brass">
+              See how it compares
             </Link>
           </div>
           <div className="bg-raised p-6">
-            <p className="font-body text-[1.05rem] leading-relaxed text-bone">
-              An Arabic-only host can run a full guided session, because the tour is
-              generated and narrated by the platform. A committed sample proves it
-              with no API key.
+            <h3 className="font-display text-xl text-brass">Darkest around each new moon</h3>
+            <p className="mt-2 font-body text-[1.05rem] leading-relaxed text-bone-muted">
+              When the moon is gone the sky is at its blackest. The next window is around
+              the {fmtLocalDate(new Date(sampleWindow.newMoon))} new moon.
             </p>
-            <Link href="/guide" className="mt-3 inline-block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-sage-light hover:text-brass">
-              Read the sample tour
+            <Link href="/planner" className="mt-3 inline-block font-body text-base text-sage-light smallcaps hover:text-brass">
+              Plan a night
+            </Link>
+          </div>
+          <div className="bg-raised p-6">
+            <h3 className="font-display text-xl text-brass">Guided in your language</h3>
+            <p className="mt-2 font-body text-[1.05rem] leading-relaxed text-bone-muted">
+              Your host walks you through the night in your own language, with the old
+              Arabic names for the stars, even if they speak only Arabic.
+            </p>
+            <Link href="/guide" className="mt-3 inline-block font-body text-base text-sage-light smallcaps hover:text-brass">
+              Hear a tour
             </Link>
           </div>
         </div>

@@ -176,37 +176,44 @@ export default function StarChart({
       aria-label="Computed star chart for the selected night and location"
     >
       <defs>
-        <radialGradient id="dome" cx="50%" cy="42%" r="62%">
-          <stop offset="0%" stopColor="#16241C" />
-          <stop offset="70%" stopColor="#0E1612" />
-          <stop offset="100%" stopColor="#0B0F0D" />
+        {/* a real night sky: deep blue-black, a touch lighter overhead */}
+        <radialGradient id="dome" cx="50%" cy="42%" r="65%">
+          <stop offset="0%" stopColor="#141F30" />
+          <stop offset="65%" stopColor="#0B1018" />
+          <stop offset="100%" stopColor="#06090F" />
         </radialGradient>
         <clipPath id="horizon">
           <circle cx={CX} cy={CY} r={R} />
         </clipPath>
+        {/* soft blur so the Milky Way reads as a hazy band, not drawn lines */}
+        <filter id="mw-blur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
       </defs>
 
       {/* the dome */}
-      <circle cx={CX} cy={CY} r={R} fill="url(#dome)" stroke="#3E6B52" strokeWidth="1" />
+      <circle cx={CX} cy={CY} r={R} fill="url(#dome)" stroke="#46566a" strokeWidth="1" strokeOpacity="0.5" />
       {!mounted && (
-        <text x={CX} y={CY} textAnchor="middle" className="font-mono" fontSize="11" fill="#6E8B7A">
-          computing sky...
+        <text x={CX} y={CY} textAnchor="middle" className="font-mono" fontSize="11" fill="#8AA9C4">
+          loading the sky...
         </text>
       )}
 
       <g clipPath="url(#horizon)">
-        {/* Milky Way band, faint and real */}
-        {milkyWay.map((d, i) => (
-          <path
-            key={`mw-${i}`}
-            d={d}
-            fill="none"
-            stroke="#7FA98F"
-            strokeWidth={i === 2 ? 9 : 5}
-            strokeLinecap="round"
-            opacity={i === 2 ? 0.1 : 0.05}
-          />
-        ))}
+        {/* Milky Way: a soft, diffuse band blurred into a cloud, not hard lines */}
+        <g filter="url(#mw-blur)">
+          {milkyWay.map((d, i) => (
+            <path
+              key={`mw-${i}`}
+              d={d}
+              fill="none"
+              stroke="#cdd8e6"
+              strokeWidth={i === 2 ? 16 : 9}
+              strokeLinecap="round"
+              opacity={i === 2 ? 0.12 : 0.06}
+            />
+          ))}
+        </g>
 
         {/* altitude rings at 30 and 60 degrees */}
         {[30, 60].map((alt) => {
@@ -220,20 +227,20 @@ export default function StarChart({
               cy={CY}
               r={rr}
               fill="none"
-              stroke="#6E8B7A"
+              stroke="#54667a"
               strokeWidth="0.5"
               strokeDasharray="2 4"
-              opacity="0.3"
+              opacity="0.28"
             />
           );
         })}
         {/* cardinal cross */}
-        <line x1={CX} y1={CY - R} x2={CX} y2={CY + R} stroke="#6E8B7A" strokeWidth="0.5" strokeDasharray="2 4" opacity="0.25" />
-        <line x1={CX - R} y1={CY} x2={CX + R} y2={CY} stroke="#6E8B7A" strokeWidth="0.5" strokeDasharray="2 4" opacity="0.25" />
+        <line x1={CX} y1={CY - R} x2={CX} y2={CY + R} stroke="#54667a" strokeWidth="0.5" strokeDasharray="2 4" opacity="0.22" />
+        <line x1={CX - R} y1={CY} x2={CX + R} y2={CY} stroke="#54667a" strokeWidth="0.5" strokeDasharray="2 4" opacity="0.22" />
 
         {/* catalogue stars */}
         {dots.map((d, i) => (
-          <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="#E8E6DC" opacity={d.o} />
+          <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="#F4F3EC" opacity={d.o} />
         ))}
 
         {/* Galactic Centre marker */}
@@ -277,9 +284,9 @@ export default function StarChart({
           ) : (
             <g key={`b-${i}`}>
               <title>{b.name}</title>
-              <rect x={b.x - 2.6} y={b.y - 2.6} width="5.2" height="5.2" transform={`rotate(45 ${b.x} ${b.y})`} fill="#7FA98F" />
+              <rect x={b.x - 2.6} y={b.y - 2.6} width="5.2" height="5.2" transform={`rotate(45 ${b.x} ${b.y})`} fill="#DCE4EE" />
               {showLabels && (
-                <text x={b.x + 7} y={b.y + 3} className="font-mono" fontSize="8.5" fill="#7FA98F">
+                <text x={b.x + 7} y={b.y + 3} className="font-mono" fontSize="8.5" fill="#AEBCCB">
                   {b.name}
                 </text>
               )}
@@ -289,10 +296,10 @@ export default function StarChart({
       </g>
 
       {/* cardinal labels: looking up, East is on the left */}
-      <text x={CX} y={CY - R - 7} textAnchor="middle" className="font-mono" fontSize="11" fill="#8AA995">N</text>
-      <text x={CX} y={CY + R + 16} textAnchor="middle" className="font-mono" fontSize="11" fill="#8AA995">S</text>
-      <text x={CX - R - 12} y={CY + 4} textAnchor="middle" className="font-mono" fontSize="11" fill="#8AA995">E</text>
-      <text x={CX + R + 12} y={CY + 4} textAnchor="middle" className="font-mono" fontSize="11" fill="#8AA995">W</text>
+      <text x={CX} y={CY - R - 8} textAnchor="middle" className="font-mono" fontSize="12" fill="#9FB4CC">N</text>
+      <text x={CX} y={CY + R + 18} textAnchor="middle" className="font-mono" fontSize="12" fill="#9FB4CC">S</text>
+      <text x={CX - R - 13} y={CY + 4} textAnchor="middle" className="font-mono" fontSize="12" fill="#9FB4CC">E</text>
+      <text x={CX + R + 13} y={CY + 4} textAnchor="middle" className="font-mono" fontSize="12" fill="#9FB4CC">W</text>
     </svg>
   );
 }

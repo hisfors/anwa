@@ -32,7 +32,7 @@ export default async function HostPage() {
         index="04"
         kicker="Host console"
         title="List a site, take bookings"
-        lead="This is the family side of Anwa. List a desert site in a few fields and the platform pre-fills your open nights from the Planner. Booking requests land in the console below, where you confirm or decline. No auth in this build, so the console shows every request for the demo."
+        lead="This is the family side of Anwa. List your desert site in a few fields and your open nights are set to the darkest upcoming dates. Booking requests land in the console below, where you confirm or decline each one."
       />
 
       <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_1fr]">

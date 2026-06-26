@@ -19,26 +19,26 @@ export default function PlannerPage() {
     <div className="py-10">
       <SectionHeader
         index="02"
-        kicker="The Planner · computed, not guessed"
+        kicker="The darkest upcoming nights"
         title="The best nights to stand under this sky"
-        lead="The ranking is real astronomy, not a model. Moon phase, astronomical twilight, the altitude of the Milky Way core, the planets up, and the fixed meteor calendar. Every raw value is shown so you can check it against Stellarium or timeanddate. That is the point: a moon phase is falsifiable."
+        lead="The best nights are dark, moonless, and have the Milky Way high overhead. We look at the moon, the hours of full darkness, the height of the Milky Way bright core, and the meteor calendar for each upcoming night, then put them in order. Pick a night to see its sky."
       />
 
       <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
         <ScoreNote
           weight="up to 50"
           title="Moon darkness"
-          body="The share of the astronomical night when the Moon is below the horizon. A new moon scores near full; a full moon scores near zero."
+          body="How much of the dark, moonless time you get. A new moon scores near full; a full moon scores near zero."
         />
         <ScoreNote
           weight="up to 30"
-          title="Milky Way core"
-          body="The highest the Galactic Centre reaches during true darkness. From Al Qua'a near the Tropic of Cancer it climbs to about 37 degrees in core season."
+          title="Milky Way bright core"
+          body="How high the bright core of the Milky Way climbs while the sky is fully dark. From Al Qua'a it reaches about 37 degrees up in the best season."
         />
         <ScoreNote
           weight="up to 20"
           title="Meteor calendar"
-          body="A bonus when a known shower peaks that night, scaled by its zenithal hourly rate from the fixed IMO calendar."
+          body="A bonus when a meteor shower peaks that night, larger when more meteors per hour are expected, from the International Meteor Organization calendar."
         />
       </div>
 

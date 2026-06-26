@@ -45,11 +45,11 @@ export default function GuideView({
       if (data.note) setNote(data.note);
       else if (data.servedLanguage && data.servedLanguage !== lang.code) {
         setNote(
-          `Live generation is off, so the committed ${data.servedLanguage.toUpperCase()} sample is shown. Add an API key to generate in ${lang.label}.`,
+          `A full ${lang.label} tour is coming soon. Here is an example of the night for now.`,
         );
       }
     } catch {
-      setNote("Could not reach the generator. Showing the last tour.");
+      setNote("Something went wrong just now. Showing the last tour.");
     } finally {
       setLoading(false);
     }
@@ -59,16 +59,9 @@ export default function GuideView({
 
   return (
     <div>
-      {/* status + language picker */}
-      <div className="mt-6 flex flex-col gap-4 border-y border-sage/15 py-4">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="kicker">
-            Tour language · {live ? "live generation on" : "no key · committed samples"}
-          </span>
-          <span className={`tag-${live ? "brass" : "sage"}`}>
-            {live ? "API key detected" : "no-key demo mode"}
-          </span>
-        </div>
+      {/* language picker */}
+      <div className="mt-8 flex flex-col gap-4 border-y border-sage/15 py-5">
+        <span className="kicker">Choose a language</span>
         <div className="flex flex-wrap gap-2">
           {GUIDE_LANGUAGES.map((l) => {
             const active = l.code === language;
@@ -100,14 +93,14 @@ export default function GuideView({
         className={`mt-8 ${rtl ? "arabic text-right" : ""}`}
       >
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 className={`font-display text-3xl text-bone ${rtl ? "arabic" : ""}`}>
+          <h2 className={`font-display text-[2rem] text-bone ${rtl ? "arabic" : ""}`}>
             {tour.title}
           </h2>
-          <span className={`tag-${tour.source === "live" ? "brass" : "sage"} ${rtl ? "arabic" : ""}`}>
-            {tour.source === "live" ? "generated live" : "committed sample"}
-          </span>
+          {tour.source === "sample" && (
+            <span className={`tag-sage ${rtl ? "arabic" : ""}`}>example tour</span>
+          )}
         </div>
-        <p className="mt-1 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-sage" dir="ltr">
+        <p className="mt-2 font-body text-sm leading-relaxed text-sage-light" dir="ltr">
           {tour.location} · {tour.night}
         </p>
         <p className={`mt-4 max-w-3xl font-body text-base leading-relaxed text-bone-muted ${rtl ? "text-lg leading-loose" : ""}`}>
@@ -115,8 +108,8 @@ export default function GuideView({
         </p>
 
         {loading && (
-          <p className="mt-6 font-mono text-sm text-accent-bright" dir="ltr">
-            generating tour...
+          <p className="mt-6 font-body text-sm text-accent-bright" dir="ltr">
+            Putting your tour together...
           </p>
         )}
 
@@ -128,7 +121,7 @@ export default function GuideView({
             >
               <div className={rtl ? "sm:order-2 sm:text-right" : ""} dir="ltr">
                 <div className="font-mono text-xl text-brass">{seg.time}</div>
-                <div className="mt-0.5 max-w-[8rem] font-mono text-[0.6rem] uppercase tracking-[0.14em] text-sage">
+                <div className="mt-1 max-w-[9rem] font-body text-sm leading-snug text-sage-light">
                   {seg.phase}
                 </div>
               </div>
@@ -138,9 +131,9 @@ export default function GuideView({
                 </h3>
                 <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1.5" dir="ltr">
                   {seg.facts.map((f, j) => (
-                    <span key={j} className="font-mono text-xs">
-                      <span className="text-sage">{f.label}: </span>
-                      <span className="text-bone-muted">{f.value}</span>
+                    <span key={j} className="text-sm">
+                      <span className="font-body text-sage-light">{f.label}: </span>
+                      <span className="font-mono text-bone-muted">{f.value}</span>
                     </span>
                   ))}
                 </div>
@@ -157,9 +150,9 @@ export default function GuideView({
         </p>
       </article>
 
-      {/* grounding, the falsifiability of the AI part */}
+      {/* where the tour comes from */}
       <div className="mt-10 panel p-5" dir="ltr">
-        <span className="kicker">How this tour was grounded</span>
+        <span className="kicker">About this tour</span>
         <ul className="mt-3 space-y-2">
           {tour.grounding.map((g, i) => (
             <li key={i} className="font-body text-sm leading-relaxed text-bone-muted">

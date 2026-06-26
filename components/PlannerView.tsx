@@ -110,11 +110,8 @@ export default function PlannerView({
       <div className="mt-6 flex flex-wrap items-end gap-4 border-y border-sage/15 py-4">
         <div>
           <label className="kicker block">Location</label>
-          <div className="mt-1 font-mono text-sm text-bone">
-            {locationName}{" "}
-            <span className="text-sage">
-              {latitude.toFixed(2)}N {longitude.toFixed(2)}E
-            </span>
+          <div className="mt-1 font-body text-sm text-bone">
+            {locationName}
           </div>
         </div>
         <div className="w-44">
@@ -156,8 +153,8 @@ export default function PlannerView({
         {/* ranked nights */}
         <div>
           <div className="flex items-baseline justify-between">
-            <span className="kicker">Ranked nights {loading && "· computing..."}</span>
-            <span className="font-mono text-[0.62rem] text-sage">score / 100</span>
+            <span className="kicker">Upcoming nights {loading && "· working it out..."}</span>
+            <span className="font-body text-sm text-sage">Score out of 100</span>
           </div>
           <ol className="mt-3 max-h-[640px] divide-y divide-sage/10 overflow-y-auto border-y border-sage/15">
             {nights.map((n) => {
@@ -172,11 +169,11 @@ export default function PlannerView({
                     }`}
                   >
                     <div className="min-w-0">
-                      <div className={`font-mono text-sm ${active ? "text-brass" : "text-bone"}`}>
+                      <div className={`font-mono text-[0.95rem] ${active ? "text-brass" : "text-bone"}`}>
                         {n.label}
                       </div>
-                      <div className="mt-0.5 truncate font-body text-xs text-sage-light">
-                        {Math.round(n.moonIllumination * 100)}% moon · core {n.gcMaxAltitude}&deg;
+                      <div className="mt-1 truncate font-body text-sm text-sage-light">
+                        {Math.round(n.moonIllumination * 100)}% moon · Milky Way {n.gcMaxAltitude}&deg; high
                         {n.meteor?.isPeak ? ` · ${n.meteor.name}` : ""}
                       </div>
                     </div>
@@ -202,14 +199,21 @@ export default function PlannerView({
                 </span>
               </div>
 
-              <div className="panel-deep mt-4 p-4 sm:p-5">
+              <p className="mt-4 font-body text-base leading-relaxed text-bone-muted">
+                The whole sky above Al Qua&apos;a on this night, as if you looked straight
+                up. Drag the slider to move from dusk to dawn and watch it turn.
+              </p>
+              <div className="mt-3 border border-sage/15 bg-[#080C12] p-4 sm:p-5">
                 <StarChart
                   latitude={latitude}
                   longitude={longitude}
                   dateISO={chartISO}
                 />
                 {/* time scrubber */}
-                <div className="mt-3">
+                <div className="mt-4">
+                  <div className="mb-1.5 text-center font-body text-sm text-sage smallcaps">
+                    Drag to move through the night
+                  </div>
                   <input
                     type="range"
                     min={0}
@@ -220,9 +224,9 @@ export default function PlannerView({
                     aria-label="Time of night"
                     className="w-full accent-[#7FA98F]"
                   />
-                  <div className="mt-1 flex justify-between font-mono text-[0.6rem] uppercase tracking-[0.14em] text-sage">
+                  <div className="mt-1.5 flex justify-between font-mono text-[0.72rem] tracking-[0.06em] text-sage">
                     <span>Dusk {fmtLocalTime(selected.astroDusk ? new Date(selected.astroDusk) : null)}</span>
-                    <span className="text-brass">{fmtLocalTime(new Date(chartMs))} local</span>
+                    <span className="text-brass">{fmtLocalTime(new Date(chartMs))}</span>
                     <span>Dawn {fmtLocalTime(selected.astroDawn ? new Date(selected.astroDawn) : null)}</span>
                   </div>
                 </div>
@@ -231,25 +235,24 @@ export default function PlannerView({
               {/* sky clock */}
               <SkyClock night={selected} chartMs={chartMs} />
 
-              {/* raw values for verification */}
+              {/* the numbers behind this night */}
               <div className="mt-5">
-                <span className="kicker">Raw values · check against any ephemeris</span>
-                <dl className="mt-2 grid grid-cols-2 gap-x-6 gap-y-2 border-t border-sage/15 pt-3 sm:grid-cols-3">
-                  <RawVal label="Moon illum." value={`${(selected.moonIllumination * 100).toFixed(1)}`} unit="%" />
+                <span className="kicker">What this night looks like</span>
+                <dl className="mt-2 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-sage/15 pt-3 sm:grid-cols-3">
+                  <RawVal label="Moon lit" value={`${(selected.moonIllumination * 100).toFixed(0)}`} unit="%" />
                   <RawVal label="Moon phase" value={selected.moonPhaseName} />
-                  <RawVal label="Dark hours" value={`${selected.darkHours}`} unit={`/ ${selected.astroNightHours} h`} />
-                  <RawVal label="Astro dusk" value={fmtLocalTime(selected.astroDusk ? new Date(selected.astroDusk) : null)} unit="local" />
-                  <RawVal label="Astro dawn" value={fmtLocalTime(selected.astroDawn ? new Date(selected.astroDawn) : null)} unit="local" />
-                  <RawVal label="Core max alt" value={`${selected.gcMaxAltitude}`} unit="deg" />
-                  <RawVal label="Core transit" value={fmtLocalTime(selected.gcTransit ? new Date(selected.gcTransit) : null)} unit="local" />
+                  <RawVal label="Dark hours" value={`${selected.darkHours}`} unit={`of ${selected.astroNightHours} h`} />
+                  <RawVal label="Full dark begins" value={fmtLocalTime(selected.astroDusk ? new Date(selected.astroDusk) : null)} />
+                  <RawVal label="Full dark ends" value={fmtLocalTime(selected.astroDawn ? new Date(selected.astroDawn) : null)} />
+                  <RawVal label="Milky Way highest" value={`${selected.gcMaxAltitude}`} unit="° up" />
+                  <RawVal label="Highest at" value={fmtLocalTime(selected.gcTransit ? new Date(selected.gcTransit) : null)} />
                   <RawVal label="Moon down" value={`${fmtLocalTime(selected.moonDownWindow.start ? new Date(selected.moonDownWindow.start) : null)}-${fmtLocalTime(selected.moonDownWindow.end ? new Date(selected.moonDownWindow.end) : null)}`} />
-                  <RawVal label="Score parts" value={`m${selected.components.moon} g${selected.components.gc} s${selected.components.meteor}`} />
                 </dl>
                 {selected.planets.length > 0 && (
                   <p className="mt-3 font-body text-sm text-bone-muted">
-                    <span className="kicker">Planets up</span>{" "}
+                    <span className="kicker">Planets up tonight</span>{" "}
                     {selected.planets
-                      .map((p) => `${p.name} ${p.altitude.toFixed(0)}deg (mag ${p.magnitude.toFixed(1)})`)
+                      .map((p) => `${p.name} ${p.altitude.toFixed(0)}° high`)
                       .join(" · ")}
                   </p>
                 )}
@@ -261,7 +264,7 @@ export default function PlannerView({
                   href={`/guide?date=${selected.date}&lat=${latitude}&lon=${longitude}`}
                   className="btn"
                 >
-                  Generate the tour for this night
+                  See the tour for this night
                 </Link>
                 <Link href="/book" className="btn-ghost">
                   Find a host for this night
@@ -278,9 +281,9 @@ export default function PlannerView({
 function RawVal({ label, value, unit }: { label: string; value: string; unit?: string }) {
   return (
     <div>
-      <dt className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-sage">{label}</dt>
-      <dd className="mt-0.5">
-        <Figure value={value} unit={unit} className="text-sm" />
+      <dt className="font-body text-sm text-sage">{label}</dt>
+      <dd className="mt-1">
+        <Figure value={value} unit={unit} className="text-base" />
       </dd>
     </div>
   );
@@ -290,7 +293,7 @@ function SkyClock({ night, chartMs }: { night: NightScore; chartMs: number }) {
   if (!night.astroDusk || !night.astroDawn) {
     return (
       <p className="mt-5 font-body text-sm text-sage-light">
-        No astronomical darkness on this night at this latitude.
+        The sky does not reach full darkness on this night here.
       </p>
     );
   }
@@ -309,8 +312,8 @@ function SkyClock({ night, chartMs }: { night: NightScore; chartMs: number }) {
 
   return (
     <div className="mt-5">
-      <span className="kicker">Sky clock · the night, end to end</span>
-      <div className="relative mt-3 h-9 w-full border border-sage/20 bg-field">
+      <span className="kicker">The night, hour by hour</span>
+      <div className="relative mt-7 h-9 w-full border border-sage/20 bg-field">
         {/* astronomical night band */}
         <div
           className="absolute inset-y-0 bg-observatory"
@@ -323,19 +326,19 @@ function SkyClock({ night, chartMs }: { night: NightScore; chartMs: number }) {
             style={{ left: pct(moonStart), width: w(moonStart, moonEnd) }}
           />
         )}
-        {/* GC transit marker */}
+        {/* Milky Way highest point marker */}
         {gc && gc >= t0 && gc <= t1 && (
           <div className="absolute inset-y-0 w-px bg-brass" style={{ left: pct(gc) }}>
-            <span className="absolute -top-0.5 left-1 font-mono text-[0.55rem] text-brass">core</span>
+            <span className="absolute -top-5 left-1 whitespace-nowrap font-body text-xs text-brass">Milky Way highest</span>
           </div>
         )}
         {/* current chart time marker */}
         <div className="absolute inset-y-0 w-0.5 bg-bone" style={{ left: pct(chartMs) }} />
       </div>
-      <div className="mt-1.5 flex justify-between font-mono text-[0.58rem] uppercase tracking-[0.12em] text-sage">
-        <span>{fmtLocalTime(new Date(t0))}</span>
-        <span className="text-accent-bright">dark = moon down</span>
-        <span>{fmtLocalTime(new Date(t1))}</span>
+      <div className="mt-2 flex justify-between font-body text-xs text-sage">
+        <span className="font-mono">{fmtLocalTime(new Date(t0))}</span>
+        <span className="text-accent-bright">Darkest hours, moon down</span>
+        <span className="font-mono">{fmtLocalTime(new Date(t1))}</span>
       </div>
     </div>
   );

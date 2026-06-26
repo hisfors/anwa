@@ -23,8 +23,8 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-sage/15 bg-field">
       <div className="mx-auto flex max-w-almanac items-center justify-between px-5 py-4 sm:px-8">
         <Link href="/" className="flex items-baseline gap-2.5">
-          <span className="font-display text-[1.95rem] leading-none text-bone">Anwa</span>
-          <span className="arabic text-2xl text-brass/85">أنواء</span>
+          <span className="font-display text-[2.15rem] leading-none text-bone">Anwa</span>
+          <span className="arabic text-[1.6rem] text-brass/85">أنواء</span>
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">

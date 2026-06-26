@@ -55,12 +55,14 @@ export default async function SitePage({
           <p className="font-body text-lg leading-relaxed text-bone">{site.description}</p>
           <p className="mt-4 font-body text-base leading-relaxed text-bone-muted">{site.host.bio}</p>
 
-          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5 border-y border-sage/15 py-5 sm:grid-cols-4">
-            <Stat label="Sky brightness" value={site.skyBrightness.toFixed(1)} unit="mag" tone="brass" />
-            <Stat label="Bortle" value={site.bortleClass} sub="class" />
+          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5 border-y border-sage/15 py-5 sm:grid-cols-3">
+            <Stat label="Sky darkness" value={site.skyBrightness.toFixed(1)} sub="higher is darker" tone="brass" />
+            <Stat label="Bortle" value={`${site.bortleClass} of 9`} sub="1 is the darkest" />
             <Stat label="Capacity" value={site.capacity} sub="guests" />
-            <Stat label="Coordinates" value={`${site.latitude.toFixed(2)}N`} sub={`${site.longitude.toFixed(2)}E`} />
           </div>
+          <p className="mt-2 font-body text-xs text-sage-light">
+            Location {site.latitude.toFixed(2)}N, {site.longitude.toFixed(2)}E
+          </p>
 
           <div className="mt-6">
             <span className="kicker">What the host provides</span>
@@ -72,12 +74,12 @@ export default async function SitePage({
           </div>
 
           <div className="mt-6">
-            <span className="kicker">Open nights · from the Planner</span>
+            <span className="kicker">The darkest upcoming nights</span>
             <ul className="mt-3 divide-y divide-sage/10 border-y border-sage/15">
               {site.availabilities.map((a) => (
                 <li key={a.id} className="flex items-center justify-between py-2.5">
                   <span className="font-body text-sm text-bone">{fmtLocalLongDate(a.date)}</span>
-                  <span className="font-mono text-xs text-sage-light">{a.note} · score {a.score}</span>
+                  <span className="font-body text-xs text-sage-light">{a.note} · score <span className="font-mono">{a.score}</span>/100</span>
                 </li>
               ))}
             </ul>

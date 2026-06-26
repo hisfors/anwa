@@ -60,7 +60,7 @@ export default function BookingForm({
   if (availabilities.length === 0) {
     return (
       <p className="font-body text-sm text-sage-light">
-        This site has no open nights right now. Check back after the next planning run.
+        This site has no open nights right now. New dark nights are added regularly, so do check back soon.
       </p>
     );
   }
@@ -68,7 +68,7 @@ export default function BookingForm({
   if (state === "done") {
     return (
       <div className="panel-deep p-6">
-        <span className="tag-brass">Request sent · status REQUESTED</span>
+        <span className="tag-brass">Request sent</span>
         <h3 className="mt-3 font-display text-2xl text-bone">Your request is in</h3>
         <p className="mt-2 font-body text-sm leading-relaxed text-bone-muted">
           The host has received your request for{" "}
@@ -119,7 +119,7 @@ export default function BookingForm({
             options={availabilities.map((a) => ({
               value: a.dateISO,
               label: a.label,
-              hint: `score ${a.score}`,
+              hint: `score ${a.score}/100`,
             }))}
           />
         </Field>
@@ -156,8 +156,8 @@ export default function BookingForm({
       </div>
 
       {chosen && (
-        <p className="mt-3 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-sage">
-          {chosen.note}
+        <p className="mt-3 font-body text-sm text-sage-light">
+          About this night: {chosen.note}
         </p>
       )}
       {error && <p className="mt-3 font-body text-sm text-[#C2603A]">{error}</p>}

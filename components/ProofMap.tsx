@@ -79,7 +79,7 @@ export default function ProofMap() {
         const el = document.createElement("div");
         el.style.cssText = `width:14px;height:14px;border-radius:50%;background:${markerColor(p.bortle)};border:2px solid #0B0F0D;box-shadow:0 0 0 1px ${markerColor(p.bortle)};cursor:pointer`;
         const popup = new maplibre.Popup({ offset: 14, closeButton: false }).setHTML(
-          `<div style="font-size:11px;line-height:1.5"><b style="color:#E8B873">${p.name}</b><br/>${p.sqm.toFixed(1)} mag/arcsec&sup2; · Bortle ${p.bortle}</div>`,
+          `<div style="font-size:12px;line-height:1.5"><b style="color:#E8B873">${p.name}</b><br/>Sky darkness ${p.sqm.toFixed(1)} · Bortle ${p.bortle} of 9</div>`,
         );
         new maplibre.Marker({ element: el }).setLngLat([p.longitude, p.latitude]).setPopup(popup).addTo(map);
       }
@@ -116,27 +116,23 @@ export default function ProofMap() {
       <div ref={containerRef} className="h-[420px] w-full" />
       <div className="border-t border-sage/15 px-4 py-3">
         {pin ? (
-          <div className="flex flex-col gap-1">
-            <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-sage">
-              Pinned {pin.lat.toFixed(3)}N {pin.lon.toFixed(3)}E · nearest reference {pin.nearest.name} ({pin.distanceKm.toFixed(0)} km)
+          <div className="flex flex-col gap-1.5">
+            <p className="font-body text-sm text-sage">
+              Pinned at {pin.lat.toFixed(3)}N {pin.lon.toFixed(3)}E. Nearest reference point: {pin.nearest.name}, about {pin.distanceKm.toFixed(0)} km away.
             </p>
             <p className="font-body text-sm text-bone">
-              Bortle {pin.nearest.bortle} from the nearest published reference point.{" "}
-              Estimated sky brightness{" "}
+              Around here the sky darkness is roughly{" "}
               <span className="figure text-brass">{pin.nearest.sqm.toFixed(1)}</span>
-              <span className="text-sage"> mag/arcsec&sup2;</span>.{" "}
+              <span className="text-sage"> (a higher number means a darker sky)</span>, which is
+              Bortle {pin.nearest.bortle} of 9 (1 is the darkest).{" "}
               <span className="text-sage-light">
-                This figure is the midpoint of that class&apos;s standard range (
-                {pin.nearest.sqmRange[0].toFixed(1)} to {pin.nearest.sqmRange[1].toFixed(1)}), not a
-                measured value. Method on the Methods page.
+                This is an estimate based on the nearest reference point.
               </span>
             </p>
           </div>
         ) : (
           <p className="font-body text-sm text-sage-light">
-            Click anywhere on the map to drop a pin. Anwa returns the darkness of the
-            nearest published reference point, labelled as derived. Markers: green is
-            dark, orange is a bright city.
+            Tap anywhere on the map to drop a pin and see how dark that spot is.
           </p>
         )}
       </div>

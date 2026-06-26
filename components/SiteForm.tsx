@@ -63,9 +63,9 @@ export default function SiteForm() {
         <span className="tag-brass">Site listed</span>
         <h3 className="mt-3 font-display text-2xl text-bone">{created.name} is live</h3>
         <p className="mt-2 font-body text-sm leading-relaxed text-bone-muted">
-          Anwa pre-filled {created.openNights} open night
-          {created.openNights === 1 ? "" : "s"} from the Planner&apos;s best upcoming dark
-          nights. Visitors can request to book now.
+          We set {created.openNights} open night
+          {created.openNights === 1 ? "" : "s"} for you, matched to the darkest upcoming
+          nights at your site. Visitors can request to book now.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link href={`/book/${created.id}`} className="btn">View the listing</Link>
@@ -97,9 +97,22 @@ export default function SiteForm() {
         </div>
         <F label="Latitude"><I v={form.latitude} on={(v) => set("latitude", v)} type="number" /></F>
         <F label="Longitude"><I v={form.longitude} on={(v) => set("longitude", v)} type="number" /></F>
-        <F label="Bortle class"><I v={form.bortleClass} on={(v) => set("bortleClass", v)} type="number" /></F>
-        <F label="Sky brightness (mag/arcsec2)"><I v={form.skyBrightness} on={(v) => set("skyBrightness", v)} type="number" /></F>
       </div>
+
+      <details className="mt-4 border-t border-sage/12 pt-4">
+        <summary className="cursor-pointer font-body text-sm text-sage-light">
+          Advanced: sky readings (optional)
+        </summary>
+        <p className="mt-2 font-body text-sm text-bone-muted">
+          Leave these as they are unless you have your own measurements. They describe how
+          dark your sky is. A lower Bortle number means a darker sky (1 is the darkest), and a
+          higher sky-darkness number means a darker sky too.
+        </p>
+        <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <F label="Bortle (1 darkest to 9)"><I v={form.bortleClass} on={(v) => set("bortleClass", v)} type="number" /></F>
+          <F label="Sky darkness (higher is darker)"><I v={form.skyBrightness} on={(v) => set("skyBrightness", v)} type="number" /></F>
+        </div>
+      </details>
 
       {error && <p className="mt-3 font-body text-sm text-[#C2603A]">{error}</p>}
 

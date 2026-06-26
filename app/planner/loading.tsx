@@ -2,7 +2,7 @@ export default function Loading() {
   return (
     <div className="py-10">
       <div className="border-t border-sage/20 pt-5">
-        <span className="kicker">The Planner · computed, not guessed</span>
+        <span className="kicker">The Planner</span>
         <div className="mt-4 h-9 w-2/3 animate-pulse bg-raised" />
       </div>
       <p className="mt-8 font-mono text-sm text-accent-bright">computing the upcoming nights...</p>

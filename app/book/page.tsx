@@ -21,7 +21,7 @@ export default async function BookPage() {
         index="04"
         kicker="Host & Book · families earn"
         title="Book a night with a camel-farming family"
-        lead="Every site here is hosted by a local Al Qua'a family. Availability is tied to the Planner's genuinely dark nights, so a booking is always a good night under the sky. Payment is a request-to-book step for this build; the booking lifecycle is real and persists."
+        lead="Every site here is hosted by a local Al Qua'a family. Open dates follow the darkest upcoming nights, so a booking is always a good night under the sky. You send a request first, the family confirms it, and nothing is charged before then."
       />
 
       <div className="mt-6 flex flex-wrap gap-3">
@@ -54,10 +54,10 @@ export default async function BookPage() {
                 </div>
               </div>
               <p className="mt-3 font-body text-base leading-relaxed text-bone-muted">{s.description}</p>
-              <div className="mt-4 grid grid-cols-3 gap-2 border-t border-sage/12 pt-3 font-mono text-[0.66rem] text-sage">
-                <span>Bortle {s.bortleClass}</span>
-                <span>{s.skyBrightness.toFixed(1)} mag</span>
-                <span>cap {s.capacity}</span>
+              <div className="mt-4 grid grid-cols-3 gap-2 border-t border-sage/12 pt-3 font-body text-[0.8rem] text-sage">
+                <span>Bortle {s.bortleClass} of 9</span>
+                <span>Dark sky <span className="font-mono">{s.skyBrightness.toFixed(1)}</span></span>
+                <span>Up to {s.capacity} guests</span>
               </div>
               <div className="mt-3 flex items-center justify-between">
                 <span className="font-body text-xs text-sage-light">

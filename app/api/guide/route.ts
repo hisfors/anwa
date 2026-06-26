@@ -26,7 +26,7 @@ interface Body {
 const samples = sampleTour as Record<string, Tour>;
 
 export async function GET() {
-  // expose whether live generation is available, for the UI to label honestly
+  // report whether a fresh tour can be written right now, so the page can say so
   return NextResponse.json({ live: Boolean(process.env.ANTHROPIC_API_KEY) });
 }
 
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
   const haveKey = Boolean(process.env.ANTHROPIC_API_KEY);
 
   if (!haveKey) {
-    // no-key mode: serve the committed sample, label live as unavailable
+    // show the example tour for now
     const sample = samples[language] || samples.en;
     return NextResponse.json({
       tour: sample,
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
       requestedLanguage: language,
       servedLanguage: sample.language,
       note:
-        "Live generation is unavailable because no ANTHROPIC_API_KEY is set. This is the committed sample tour. Add a key in .env to generate for this exact night in any language.",
+        "A full tour for any night in any language is coming soon. Here is an example of the night for now.",
     });
   }
 
@@ -91,8 +91,8 @@ export async function POST(request: Request) {
       moonIllumination: `${(night.moonIllumination * 100).toFixed(0)}%`,
       moonPhase: night.moonPhaseName,
       galacticCentre: night.gcTransit
-        ? `transits ${fmtLocalTime(new Date(night.gcTransit))} local at ${night.gcMaxAltitude} deg altitude`
-        : "not above the horizon during darkness on this night",
+        ? `is highest around ${fmtLocalTime(new Date(night.gcTransit))}, about ${Math.round((night.gcMaxAltitude / 90) * 100)} per cent of the way up the southern sky`
+        : "stays below the horizon through the dark hours on this night",
       planetsUp: night.planets.map((p) => `${p.name} ${p.altitude.toFixed(0)} deg`),
       loreStarsUp: loreUp.map((x) => ({
         transliteration: x.star.transliteration,
@@ -107,13 +107,15 @@ export async function POST(request: Request) {
     };
 
     const system =
-      "You are an expert Bedouin star-lore guide for Al Qua'a in the UAE. You write a guided night-sky tour. " +
+      "You are a warm, plain-spoken Bedouin star-lore guide for Al Qua'a in the UAE. You write a guided night-sky tour for a first-time visitor who knows no astronomy. " +
       "You MUST only use the heritage facts provided in the user's JSON. Do not invent star names, meanings, or lore. " +
       "If a star is not in the provided list, do not mention it by an Arabic name. " +
-      "Use British spelling. Never use em dashes or en dashes, only plain hyphens. No filler, tight and specific. " +
+      "Write in plain, calm, welcoming language. Talk about what the visitor will see in the sky, never about systems or data. " +
+      "Lead any technical term with everyday words and briefly gloss it: say 'the Milky Way bright core' not 'Galactic Centre'; say 'the hours of full darkness' not 'astronomical night'; describe how high something sits ('a third of the way up the sky') rather than giving raw degrees in the prose; give a number a sense of scale (for example 'a Bortle 2 of 9, among the darkest skies'). " +
+      "Use British spelling. Never use em dashes or en dashes, only plain hyphens. No filler, no boasting, short real sentences. " +
       "Reply with ONLY a JSON object, no markdown fence, matching exactly this TypeScript type: " +
       "{ title: string; intro: string; segments: { time: string; phase: string; heading: string; facts: { label: string; value: string }[]; narration: string; stars: string[] }[]; closing: string }. " +
-      "Produce 3 to 5 segments ordered through the night. Put altitudes and times in facts as strings with units. " +
+      "Produce 3 to 5 segments ordered through the night. Keep each phase label a plain friendly phrase. In the facts, keep the numbers but use plain labels a visitor understands. " +
       "Weave the Arabic names and their real meanings into the narration. Write everything in the requested language.";
 
     const user =
@@ -150,17 +152,17 @@ export async function POST(request: Request) {
       segments: parsed.segments,
       closing: parsed.closing,
       grounding: [
-        `Computed for ${grounding.night} at ${grounding.location} with astronomy-engine.`,
-        `Galactic Centre: ${grounding.galacticCentre}.`,
-        `Lore stars above the horizon and their etymology came from the curated dataset.`,
-        `Generated live with ${model}, grounded only in the supplied heritage facts.`,
+        `This tour is for the night of ${grounding.night} at ${grounding.location}.`,
+        `The Milky Way bright core ${grounding.galacticCentre}.`,
+        `The star names and their meanings come from old Arab and Bedouin sky lore.`,
+        `The order of the night follows where each star and planet sits as the hours pass.`,
       ],
       source: "live",
     };
 
     return NextResponse.json({ tour, live: true, requestedLanguage: language, servedLanguage: language });
-  } catch (err) {
-    // any failure falls back to the sample, so the demo never breaks
+  } catch {
+    // fall back to the example tour so the page always has something to show
     const sample = samples[language] || samples.en;
     return NextResponse.json({
       tour: sample,
@@ -168,8 +170,7 @@ export async function POST(request: Request) {
       requestedLanguage: language,
       servedLanguage: sample.language,
       note:
-        "Live generation failed, serving the committed sample tour instead. " +
-        (err instanceof Error ? err.message : "unknown error"),
+        "A fresh tour is not ready just now. Here is an example of the night for now.",
     });
   }
 }

@@ -69,9 +69,9 @@
 
   /* section eyebrow / label: Spectral small caps, letterspaced, like a printed atlas */
   .kicker {
-    @apply font-body text-[0.875rem] text-sage;
+    @apply font-body text-[0.98rem] text-sage;
     font-variant: all-small-caps;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     line-height: 1.3;
   }
 
@@ -139,27 +139,37 @@
   50% { opacity: var(--star-max, 0.85); }
 }
 
-/* an occasional shooting star streaking down and to the left */
+/* a real shooting star: a bright head with a trailing tail, zipping across briefly.
+ * rotate(--a) sets the streak direction; translateX(--end) moves it head-first
+ * along that axis (negative, so the head leads and the tail trails behind). */
 @keyframes star-shoot {
-  0% { transform: translate3d(0, 0, 0) rotate(18deg); opacity: 0; }
-  4% { opacity: 0.9; }
-  16% { opacity: 0.9; }
-  24% { transform: translate3d(-340px, 110px, 0) rotate(18deg); opacity: 0; }
-  100% { transform: translate3d(-340px, 110px, 0) rotate(18deg); opacity: 0; }
+  0% { transform: rotate(var(--a)) translateX(0); opacity: 0; }
+  2% { opacity: 1; }
+  14% { transform: rotate(var(--a)) translateX(var(--end, -540px)); opacity: 0; }
+  100% { transform: rotate(var(--a)) translateX(var(--end, -540px)); opacity: 0; }
 }
 
 .shooting-star {
   position: absolute;
-  width: 150px;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(232, 230, 220, 0) 0%,
-    rgba(232, 230, 220, 0.85) 70%,
-    rgba(232, 230, 220, 0) 100%
-  );
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #f3efe2;
+  box-shadow: 0 0 8px 1.5px rgba(243, 239, 226, 0.55);
   opacity: 0;
-  animation: star-shoot var(--shoot-dur, 14s) ease-in var(--shoot-delay, 0s) infinite;
+  animation: star-shoot var(--shoot-dur, 11s) linear var(--shoot-delay, 0s) infinite;
+}
+/* the tail trails in local +x, brightest at the head and fading away behind it */
+.shooting-star::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 1px;
+  width: 130px;
+  height: 1.5px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(to right, rgba(243, 239, 226, 0.85), rgba(243, 239, 226, 0));
 }
 
 /* honour reduced motion everywhere */
