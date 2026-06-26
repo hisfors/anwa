@@ -155,7 +155,7 @@ export default function ProofPage() {
       </div>
 
       {/* read your own sky */}
-      <div className="mt-20 border-t border-sage/20 pt-5">
+      <div id="read-my-sky" className="mt-20 scroll-mt-24 border-t border-sage/20 pt-5">
         <span className="kicker">Read your own sky</span>
         <h3 className="mt-2 font-display text-[1.7rem] text-bone">How dark is the sky where you are?</h3>
         <p className="mt-2 max-w-3xl font-body text-base leading-relaxed text-bone-muted">

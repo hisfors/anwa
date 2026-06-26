@@ -215,6 +215,38 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Read my sky teaser */}
+      <section className="mt-24">
+        <div className="panel-deep grid grid-cols-1 items-center gap-8 p-7 sm:p-10 md:grid-cols-[1.2fr_1fr]">
+          <div>
+            <span className="kicker text-brass/80">New · reads your photo</span>
+            <h2 className="mt-3 font-display text-[2.1rem] font-medium leading-[1.1] text-bone">
+              How dark is your sky?
+            </h2>
+            <p className="mt-4 max-w-xl font-body text-lg leading-relaxed text-bone-muted">
+              Upload a photo of your own night sky and Anwa reads it: how dark it is, whether
+              the Milky Way shows, and how much city light is reaching you. Then see how it
+              compares with Al Qua&apos;a.
+            </p>
+            <Link href="/proof#read-my-sky" className="btn mt-6">
+              Read my sky
+            </Link>
+          </div>
+          <div className="surface relative aspect-[4/3] overflow-hidden">
+            <Image
+              src="/img/alquaa-sky-landscape.jpg"
+              alt="A night sky photograph being read for darkness"
+              fill
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="photo-treated object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-field/90 to-transparent p-4">
+              <span className="tag-brass">reads as Bortle 2 of 9, a truly dark sky</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

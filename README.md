@@ -38,6 +38,16 @@ A single Next.js app. Each module is real and works end to end.
 
 The modules connect: the Planner feeds the Booking availability, and a chosen night flows into both the star chart and the Guide.
 
+### Where AI earns its place
+
+AI is used only where it genuinely adds value, always grounded in the real astronomy and the curated heritage data, never to invent facts. Every feature degrades gracefully without an API key.
+
+- **The Guide** generates and translates a full guided tour into any language, grounded in the curated Arab and Bedouin star lore. Ships committed English and Arabic samples for the no-key demo.
+- **Ask the Sky** (`/companion`, plus a floating button on every page) is an agentic assistant: it calls real tools (rank the nights, what is up tonight, star lore, the host sites) and answers from real computation rather than guessing. Without a key it still returns a real computed answer.
+- **Read my sky** (on The Proof) uses multimodal vision: upload a night photo and it estimates the darkness (Bortle class), what is visible, and the light pollution, then compares it with Al Qua'a. Works on the team photos with no key; live vision on uploads with a key. This turns every visitor's phone into a citizen-science darkness sensor.
+- **Spoken tours**: the Guide reads the tour aloud in the chosen language using the device's own voice. No key, works offline, so an Arabic-only host can literally press play.
+- **Your-night keepsake** (`/keepsake`): a shareable card of the real sky on a guest's night with a short grounded story, downloadable as an image.
+
 ## 4. Impact, with testable claims
 
 Every claim below is filled with a real computed or sourced value, and can be checked.
@@ -102,7 +112,7 @@ npm run dev
 
 `.env` keys:
 
-- `ANTHROPIC_API_KEY` - optional. With it, the Guide generates and translates live for any night and language. Without it, the Guide serves the committed sample tour and labels live generation as unavailable. Everything else runs identically.
+- `ANTHROPIC_API_KEY` - optional, and one key powers all the live AI: the Guide (tours in any language), Ask the Sky (the companion), Read my sky (photo vision), and the keepsake story. Get a key at console.anthropic.com. Without it the app still runs everywhere: the Guide serves a committed sample, the companion returns a real computed answer, Read my sky works on the team photos, and the keepsake uses a templated story. Spoken tours and the map never need a key.
 - `ANWA_GUIDE_MODEL` - the model the Guide uses (default `claude-opus-4-8`).
 - `DATABASE_URL` - the SQLite file (default `file:./dev.db`).
 
