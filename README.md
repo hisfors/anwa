@@ -4,12 +4,20 @@
 
 Tatweer hackathon entry, **Challenge 5 (free choice / open lane)**.
 
-**The specific problem:** a world-class dark sky earns the local families nothing, and has no way to be measured, proven, protected, or monetised, while those families depend on camel farming as a single income stream and light pollution creeps in unmonitored.
+## The problem
+
+Al Qua'a sits under one of the darkest skies in the country: a Bortle 2 sky where the Milky Way is visible to the naked eye, about 33 times darker than Dubai's. It is a rare, world-class natural asset, and it earns the people who live beneath it nothing.
+
+The families here depend on camel farming as a single, fragile income. The dark sky above them, the one thing they have that the cities have already lost, brings in nothing at all. And no one is guarding it: there is no record of how dark it is, no way to prove it to anyone, and light pollution is creeping out from the coast year on year. A dark sky is a resource you only lose once, and there is no getting it back. Right now Al Qua'a is quietly losing a world-class one, with nothing to show for it and no one watching.
+
+So the problem has three edges at once: a community with one fragile income, a rare asset earning them nothing, and that asset shrinking while it is unmeasured and unprotected. Anwa is built to turn all three around: prove the darkness with real data, make it a night people travel and pay for in the families' hands, and keep the first running record of whether this sky is slipping.
 
 The name **Anwa** (أنواء) is the old Bedouin star-calendar system: reading the heliacal risings of stars to know the seasons, the weather, and the rains. The platform's planner is a modern, computed version of exactly that.
 
 ![The Milky Way over Al Qua'a, a team long exposure](public/img/alquaa-sky-landscape.jpg)
 *Long exposure. Al Qua'a, UAE. Team original. The Milky Way core and green airglow are visible to the naked eye here; the orange band low on the horizon is distant light pollution, the exact thing this platform monitors.*
+
+▶ **See it working:** [product walkthrough video](media/anwa-demo.mp4) · [concept film](media/anwa-film.mp4) · run it yourself with the steps in section 9.
 
 ---
 
@@ -150,7 +158,10 @@ public/img/     the two team photographs
 
 ## 10. Demo video
 
-_Demo video link: to be added._
+- **Product walkthrough** (real screen recording of the live app, all four modules and every AI feature end to end): [media/anwa-demo.mp4](media/anwa-demo.mp4)
+- **Concept film** (a short atmosphere piece): [media/anwa-film.mp4](media/anwa-film.mp4)
+
+A note on honesty: the two long-exposure photographs (in this README and on The Proof) are real, shot on site at Al Qua'a by the team. The concept film is AI-generated illustration of the setting, not real footage, and is labelled as such.
 
 ## License
 
