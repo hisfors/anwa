@@ -46,15 +46,28 @@ export default function Companion({ live, compact = false }: { live: boolean; co
     setMessages(next);
     setInput("");
     setLoading(true);
-    try {
+
+    const payload = JSON.stringify({
+      messages: next.filter((m) => m !== GREETING).map((m) => ({ role: m.role, content: m.content })),
+    });
+    async function ask(): Promise<{ reply?: string; toolsUsed?: string[] }> {
       const res = await fetch("/api/companion", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: next.filter((m) => m !== GREETING).map((m) => ({ role: m.role, content: m.content })),
-        }),
+        body: payload,
       });
-      const data = await res.json();
+      return res.json();
+    }
+
+    try {
+      let data;
+      try {
+        data = await ask();
+      } catch {
+        // a cold start or a reload can drop the first request; give it one more go
+        await new Promise((r) => setTimeout(r, 1200));
+        data = await ask();
+      }
       setMessages((cur) => [
         ...cur,
         { role: "assistant", content: data.reply || "Sorry, I could not answer that.", toolsUsed: data.toolsUsed },
